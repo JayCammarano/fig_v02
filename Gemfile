@@ -50,6 +50,6 @@ gem 'factory_bot', group: [:development, :test]
 gem 'database_cleaner', group: [:development, :test]
 gem 'valid_attribute', group: [:development, :test]
 gem 'shoulda-matchers', group: [:development, :test], require: false
-gem 'devise'
 gem 'webpacker', '~> 3.3'
 gem "bulma-rails", "~> 0.9.0"
+gem 'knock'
