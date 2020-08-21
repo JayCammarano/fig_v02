@@ -12,6 +12,7 @@
  *
  *= require_tree .
  *= require_self
- *= require foundation_and_overrides
-
  */
+@import "bulma";
+@import "1customUtilities.scss";
+@import "3bulmaswatch.min.scss";
