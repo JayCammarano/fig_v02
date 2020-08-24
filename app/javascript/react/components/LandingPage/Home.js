@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Registration from "../Auth/Registration";
 import Login from "../Auth/Login";
 import axios from "axios";
+import NavBar from "../Global/navbar/NavBar";
 
 export class Home extends Component {
   constructor(props) {
@@ -20,15 +21,15 @@ export class Home extends Component {
         this.props.handleLogout();
       })
       .catch((error) => {
-        console.log("logout wrror", error);
+        console.log("logout error", error);
       });
   }
+
   render() {
     return (
       <div>
-        <h1>Home</h1>
+        <NavBar loggedInStatus={this.props.loggedInStatus}/>
         <h1>Status: {this.props.loggedInStatus}</h1>
-        <button onClick={this.handleLogoutClick}>logout</button>
         <Registration handleSuccessfulAuth={this.handleSuccessfulAuth} />
         <Login handleSuccessfulAuth={this.handleSuccessfulAuth} />
       </div>
