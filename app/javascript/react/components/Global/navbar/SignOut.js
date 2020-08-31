@@ -8,11 +8,11 @@ const SignOut = (props) => {
         this.props.handleLogout();
       })
       .catch((error) => {
-        console.log("logout wrror", error);
+        console.log("logout error", error);
       });
   }
   return (
-    <div className="navbar-item" onClick={this.handleLogoutClick}>logout</div>
+    <div className="navbar-item" onClick={handleLogoutClick}>logout</div>
     )
 }
 
