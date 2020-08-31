@@ -14,7 +14,7 @@ const IntroCard = () => {
             </figure>
           </div>
           <div className="media-content">
-            <p className="title is-4">Welcome To Fig</p>
+            <p className="title is-4">Welcome To Fig.</p>
             <p className="subtitle is-6">by Jay Cammarano</p>
           </div>
         </div>

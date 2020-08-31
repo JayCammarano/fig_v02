@@ -41,10 +41,24 @@ export class Registration extends Component {
   }
   render() {
     return (
-      <div className="card-content">
-        <div className="content">
-          <div>
-            <form onSubmit={this.handleSubmit}>
+      <div className="card-content ">
+        <div className="media">
+          <div className="media-left">
+            <figure className="image is-48x48">
+              <img
+                src="https://bulma.io/images/placeholders/96x96.png"
+                alt="Placeholder image"
+              />
+            </figure>
+          </div>
+          <div className="media-content">
+            <p className="title is-4">Welcome To Fig.</p>
+            <p className="subtitle is-6">by Jay Cammarano</p>
+          </div>
+        </div>
+        <div className="content center">
+          <form onSubmit={this.handleSubmit}>
+            <div className="center m-md">
               <input
                 type="email"
                 name="email"
@@ -53,6 +67,8 @@ export class Registration extends Component {
                 onChange={this.handleChange}
                 required
               />
+            </div>
+            <div className="center m-md">
               <input
                 type="password"
                 name="password"
@@ -61,6 +77,8 @@ export class Registration extends Component {
                 onChange={this.handleChange}
                 required
               />
+            </div>
+            <div className="center m-md">
               <input
                 type="password"
                 name="password_confirmation"
@@ -69,10 +87,14 @@ export class Registration extends Component {
                 onChange={this.handleChange}
                 required
               />
-              <button type="submit">Register</button>
-            </form>
-          </div>{" "}
-        </div>
+            </div>
+            <div className="center m-md">
+              <button type="submit" className="button center">
+                Register
+              </button>
+            </div>
+          </form>
+        </div>{" "}
       </div>
     );
   }

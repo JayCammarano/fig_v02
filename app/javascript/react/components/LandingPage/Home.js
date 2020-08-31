@@ -63,8 +63,9 @@ export class Home extends Component {
     } else {
       if (formType === "Register") {
         this.size = "is-two-fifths";
-        this.cardLoad =
-        <Registration handleSuccessfulAuth={this.handleSuccessfulAuth} />;
+        this.cardLoad = (
+          <Registration handleSuccessfulAuth={this.handleSuccessfulAuth} />
+        );
         debugger;
       } else if (formType === "Login") {
         this.size = "is-two-fifths";
@@ -83,9 +84,8 @@ export class Home extends Component {
     return (
       <div>
         <NavBar loggedInStatus={this.props.loggedInStatus} />
-        <h1>Status: {this.props.loggedInStatus}</h1>
-        <section className={`column ${this.size}`}>
-          <div className="column">
+        <section className="columns center">
+          <div className={`column ${this.size} m-lg`}>
             <div className="card">
               {this.cardLoad}
               <br />
