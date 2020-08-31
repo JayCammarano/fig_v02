@@ -12,7 +12,7 @@ const SignOut = (props) => {
       });
   }
   return (
-    <div className="navbar-item" onClick={this.handleLogoutClick}>logout</div>
+    <div className="navbar-item" onClick={handleLogoutClick}>logout</div>
     )
 }
 

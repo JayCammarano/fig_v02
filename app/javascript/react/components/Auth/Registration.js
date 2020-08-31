@@ -41,7 +41,8 @@ export class Registration extends Component {
   }
   render() {
     return (
-      <div>
+      <div className="box">
+        <h4 className="title is-4">Sign Up</h4>
         <form onSubmit={this.handleSubmit}>
           <input
             type="email"

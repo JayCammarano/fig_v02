@@ -42,7 +42,8 @@ export class Login extends Component {
   }
   render() {
     return (
-      <div>
+      <div className="box">
+        <h4 className="title is-4">Sign Up</h4>
         <form onSubmit={this.handleSubmit}>
           <input
             type="email"
@@ -60,8 +61,11 @@ export class Login extends Component {
             onChange={this.handleChange}
             required
           />
-          <button type="submit">Login</button>
+          <button type="submit" className="button">
+            Login
+          </button>
         </form>
+        <p>Sign Up</p>
       </div>
     );
   }
