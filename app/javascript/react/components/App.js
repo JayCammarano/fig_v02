@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Home from "./LandingPage/Home";
 import Dashboard from "./Dashboard";
+import LoginPage from "./Auth/LoginPage"
+import RegistrationPage from "./Auth/RegistrationPage"
 import axios from "axios";
 
 export class App extends Component {
@@ -72,6 +74,31 @@ export class App extends Component {
                 />
               )}
             />
+            <Route
+              exact
+              path={"/login"}
+              render={(props) => (
+                <LoginPage
+                  {...props}
+                  handleLogin={this.handleLogin}
+                  handleLogout={this.handleLogout}
+                  loggedInStatus={this.state.loggedInStatus}
+                />
+              )}
+            />
+            <Route
+              exact
+              path={"/signup"}
+              render={(props) => (
+                <RegistrationPage
+                  {...props}
+                  handleLogin={this.handleLogin}
+                  handleLogout={this.handleLogout}
+                  loggedInStatus={this.state.loggedInStatus}
+                />
+              )}
+            />
+
             <Route
               exact
               path={"/dashboard"}
