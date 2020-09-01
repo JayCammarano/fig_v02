@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   get '/login', to: "static#index"
   get 'signup', to: "static#index"
+  get '/artists', to: "static#index"
+
   get '/dashboard', to: "static#index"
   root 'static#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

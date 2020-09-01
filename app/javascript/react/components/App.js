@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Home from "./LandingPage/Home";
 import Dashboard from "./Admin/Dashboard";
-import LoginPage from "./Auth/LoginPage"
-import RegistrationPage from "./Auth/RegistrationPage"
+import LoginPage from "./Auth/LoginPage";
+import RegistrationPage from "./Auth/RegistrationPage";
 import axios from "axios";
+import AllArtistsContainer from "./artists/AllArtists/AllArtistsContainer";
 
 export class App extends Component {
   constructor() {
@@ -104,6 +105,17 @@ export class App extends Component {
               path={"/dashboard"}
               render={(props) => (
                 <Dashboard
+                  {...props}
+                  loggedInStatus={this.state.loggedInStatus}
+                />
+              )}
+            />
+
+            <Route
+              exact
+              path={"/artists"}
+              render={(props) => (
+                <AllArtistsContainer
                   {...props}
                   loggedInStatus={this.state.loggedInStatus}
                 />
