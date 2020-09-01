@@ -13,7 +13,7 @@ export const NavBar = (props) => {
   };
   let loggedIn;
   let addArtist;
-  if (props.loggedInStatus) {
+  if (props.loggedInStatus === "LOGGED_IN") {
     loggedIn = <SignOut />;
   } else {
     loggedIn = (

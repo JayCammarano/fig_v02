@@ -1,16 +1,16 @@
 import React, { Component } from "react";
-import Registration from "../Auth/Registration";
-import Login from "../Auth/Login";
+import Registration from "./Registration";
+import Login from "./Login";
 import axios from "axios";
 import NavBar from "../Global/navbar/NavBar";
-import IntroCard from "./IntroCard";
+import IntroCard from "../LandingPage/IntroCard";
 
 export class Home extends Component {
   constructor(props) {
     super(props);
     this.handleSuccessfulAuth = this.handleSuccessfulAuth.bind(this);
     this.handleLogoutClick = this.handleLogoutClick.bind(this);
-    this.cardLoad = <IntroCard />;
+    this.cardLoad = <Login />;
     if (this.props.loggedInStatus == "NOT_LOGGED_IN") {
       this.cardFooter = (
         <footer className="card-footer">
@@ -40,7 +40,7 @@ export class Home extends Component {
     } else {
       this.cardFooter = null;
     }
-    this.size = "is-three-fifths";
+    this.size = "is-two-fifths";
   }
   handleSuccessfulAuth(data) {
     this.props.history.push("/dashboard");

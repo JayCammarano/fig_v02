@@ -12,8 +12,8 @@ export class Registration extends Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    }
-      handleSubmit(event) {
+  }
+  handleSubmit(event) {
     axios
       .post(
         "http://localhost:3000/registrations",
@@ -41,34 +41,60 @@ export class Registration extends Component {
   }
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            value={this.state.email}
-            onChange={this.handleChange}
-            required
-          />
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            value={this.state.password}
-            onChange={this.handleChange}
-            required
-          />
-          <input
-            type="password"
-            name="password_confirmation"
-            placeholder="Password Confirmation"
-            value={this.state.password_confirmation}
-            onChange={this.handleChange}
-            required
-          />
-          <button type="submit">Register</button>
-        </form>
+      <div className="card-content ">
+        <div className="media">
+          <div className="media-left">
+            <figure className="image is-48x48">
+              <img
+                src="https://bulma.io/images/placeholders/96x96.png"
+                alt="Placeholder image"
+              />
+            </figure>
+          </div>
+          <div className="media-content">
+            <p className="title is-4">Welcome To Fig.</p>
+            <p className="subtitle is-6">by Jay Cammarano</p>
+          </div>
+        </div>
+        <div className="content center">
+          <form onSubmit={this.handleSubmit}>
+            <div className="center m-md">
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                value={this.state.email}
+                onChange={this.handleChange}
+                required
+              />
+            </div>
+            <div className="center m-md">
+              <input
+                type="password"
+                name="password"
+                placeholder="Password"
+                value={this.state.password}
+                onChange={this.handleChange}
+                required
+              />
+            </div>
+            <div className="center m-md">
+              <input
+                type="password"
+                name="password_confirmation"
+                placeholder="Password Confirmation"
+                value={this.state.password_confirmation}
+                onChange={this.handleChange}
+                required
+              />
+            </div>
+            <div className="center m-md">
+              <button type="submit" className="button center">
+                Register
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     );
   }
