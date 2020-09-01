@@ -6,7 +6,15 @@ Rails.application.routes.draw do
 
   get '/login', to: "static#index"
   get 'signup', to: "static#index"
+  get '/artists', to: "static#index"
+
   get '/dashboard', to: "static#index"
   root 'static#index'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  namespace :api do
+    namespace :v1 do
+      resources :artists, only: [:index, :create, :new, :show, :update] do
+        resources :releases, only: [:show, :create, :new, :update]
+      end
+    end
+  end  
 end
