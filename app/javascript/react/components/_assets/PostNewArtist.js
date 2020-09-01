@@ -10,6 +10,7 @@ const postNewArtist = (form) => {
     })
       .then((response) => {
         if (response.ok) {
+          
           return response;
         } else {
           let errorMessage = `${response.status} (${response.statusText})`,
@@ -19,7 +20,6 @@ const postNewArtist = (form) => {
       })
       .then((response) => response.json())
       .then((body) => {
-        
       })
       .catch((error) => console.error(`Error in fetch: ${error.message}`));
   

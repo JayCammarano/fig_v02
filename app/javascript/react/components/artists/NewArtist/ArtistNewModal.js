@@ -10,8 +10,6 @@ const ArtistNewTile = (props) => {
     image: "",
   });
 
-  const [shouldRedirect, setShouldRedirect] = useState(false);
-
   const handleInputChange = (event) => {
     setnewArtistRecord({
       ...newartistRecord,
@@ -20,9 +18,7 @@ const ArtistNewTile = (props) => {
   };
   const submitArtist = () => {
     event.preventDefault();
-    let response = postNewArtist(newartistRecord);
-    console.log(response)
-
+    postNewArtist(newartistRecord);
   };
   const addNewArtistToggle = () => {
     props.setToggleNewArtist("");
@@ -36,10 +32,6 @@ const ArtistNewTile = (props) => {
       altName,
     });
   };
-
-  if (shouldRedirect) {
-    return <Redirect to={`/artists/`} />;
-  }
 
   return (
     <div className={`modal ${props.toggleNewArtist}`}>
