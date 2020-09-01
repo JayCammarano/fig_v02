@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Home from "./LandingPage/Home";
-import Dashboard from "./Dashboard";
+import Dashboard from "./Admin/Dashboard";
 import LoginPage from "./Auth/LoginPage"
 import RegistrationPage from "./Auth/RegistrationPage"
 import axios from "axios";

@@ -94,7 +94,7 @@ export class Registration extends Component {
               </button>
             </div>
           </form>
-        </div>{" "}
+        </div>
       </div>
     );
   }

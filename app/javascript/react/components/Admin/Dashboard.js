@@ -1,5 +1,5 @@
 import React from 'react'
-import NavBar from './Global/navbar/NavBar'
+import NavBar from '../Global/navbar/NavBar'
 
 const Dashboard = (props) => {
   return (

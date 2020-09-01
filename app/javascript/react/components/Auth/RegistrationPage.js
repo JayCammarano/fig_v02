@@ -40,7 +40,7 @@ export class Home extends Component {
     } else {
       this.cardFooter = null;
     }
-    this.size = "is-three-fifths";
+    this.size = "is-two-fifths";
   }
   handleSuccessfulAuth(data) {
     this.props.history.push("/dashboard");
@@ -74,7 +74,7 @@ export class Home extends Component {
           <Login handleSuccessfulAuth={this.handleSuccessfulAuth} />
         );
       } else if (formType === "Intro") {
-        this.size = "is-two-fifths";
+        this.size = "is-three-fifths";
 
         this.cardLoad = <IntroCard />;
       }
