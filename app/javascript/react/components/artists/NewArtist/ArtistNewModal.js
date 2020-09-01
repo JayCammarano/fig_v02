@@ -20,7 +20,9 @@ const ArtistNewTile = (props) => {
   };
   const submitArtist = () => {
     event.preventDefault();
-    postNewArtist(newartistRecord, setShouldRedirect);
+    let response = postNewArtist(newartistRecord);
+    console.log(response)
+
   };
   const addNewArtistToggle = () => {
     props.setToggleNewArtist("");

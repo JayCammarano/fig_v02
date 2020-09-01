@@ -31,8 +31,8 @@ const AllArtistsContainer = (props) => {
     <div>
       <NavBar loggedInStatus={props.loggedInStatus} />
       <h3 className="title has-text-light pl-2 ml-5 pt-2">Artists</h3>
-      <div className="columns is-multilines p-l-lg">
-        <div className="columnn is-one-fifth">
+      <div className="columns is-multiline p-l-lg">
+        <div className="is-one-fifth m-md">
           <ArtistPlaceholderTile toggleNewArtist={toggleNewArtist} setToggleNewArtist={setToggleNewArtist}/>
         </div>
           {artistTiles}

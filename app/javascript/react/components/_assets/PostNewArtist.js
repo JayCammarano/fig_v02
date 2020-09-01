@@ -1,6 +1,6 @@
 import React from 'react'
 
-const postNewArtist = (form, updateArtists) => {
+const postNewArtist = (form) => {
     fetch(`/api/v1/artists`, {
       method: "POST",
       headers: {
@@ -19,9 +19,10 @@ const postNewArtist = (form, updateArtists) => {
       })
       .then((response) => response.json())
       .then((body) => {
-        console.log(body)
+        
       })
       .catch((error) => console.error(`Error in fetch: ${error.message}`));
-  };
+  
+    };
 
 export default postNewArtist

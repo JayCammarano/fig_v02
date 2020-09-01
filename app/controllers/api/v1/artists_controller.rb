@@ -5,10 +5,8 @@ class Api::V1::ArtistsController < ApplicationController
 
   def create
     new_artist = Artist.new(artist_params)
-    Artist.alt_name_creator(new_artist, params[:alt_name])
-    
-    binding.pry
-    
+    Artist.alt_name_creator(new_artist, params[:altName])
+        
     if new_artist.save
       render json: new_artist
     else

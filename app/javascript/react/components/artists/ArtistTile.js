@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const ArtistTile = (props) => {
   return (
-    <div className="is-one-fifth m-l-md">
+    <div className="is-one-fifth m-md">
       <Link to={`/artists/`}>
         <div className="card has-background-light">
           <figure className="image is-48by48">

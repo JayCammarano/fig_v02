@@ -12,15 +12,11 @@ class Artist < ApplicationRecord
   end
 
   def self.alt_name_creator(artist_object, alt_name_array)
-    if alt_name_array
+    if alt_name_array      
       alt_name_array.each do |alt_name|
         name_hash = {name: alt_name}
-  
         new_alt_name = AltName.new(name_hash)
-        self.alt_names << new_alt_name   
-        
-        binding.pry
-        
+        artist_object.alt_names << new_alt_name           
       end
     end
   end
