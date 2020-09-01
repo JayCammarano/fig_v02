@@ -1,7 +1,7 @@
 class Artist < ApplicationRecord
   validates :name, presence: true
   has_and_belongs_to_many :releases 
-  has_and_belongs_to_many :aliases
+  has_and_belongs_to_many :alt_names
   has_many :labels, through: :releases
   has_many :tags, through: :releases
 
@@ -11,6 +11,20 @@ class Artist < ApplicationRecord
     end
   end
 
+  def self.alt_name_creator(artist_object, alt_name_array)
+    if alt_name_array
+      alt_name_array.each do |alt_name|
+        name_hash = {name: alt_name}
+  
+        new_alt_name = AltName.new(name_hash)
+        self.alt_names << new_alt_name   
+        
+        binding.pry
+        
+      end
+    end
+  end
+  
   def releaseImageCaller
     releases = []
     self.releases.each do |release|

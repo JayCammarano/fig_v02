@@ -12,7 +12,7 @@ const AltNameField = (props) => {
           name="altName"
           className="input"
           placeholder="Artist Alias"
-          onChange={props.handleInputChange}
+          onChange={props.handleAltNameChange}
           value={props.value}
         />
     </div>

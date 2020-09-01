@@ -14,15 +14,13 @@ const MultiFieldContainer = (props) => {
   let renderAltNameFields = totalAltNameFields.map((inputField) => {
     n = n + 1;
     return (
-      <Fragment key={n}>
         <AltNameField
-          handleInputChange={props.handleInputChange}
-          altnName={props.artistRecord.altName}
+          handleAltNameChange={props.handleAltNameChange}
+          altnName={props.newartistRecord.altName}
           key={n}
           id={n}
-          value={props.artistRecord.altName[`${n}`]}
+          value={props.newartistRecord.altName[`${n}`]}
         />
-      </Fragment>
     );
   });
 

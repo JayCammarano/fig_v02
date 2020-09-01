@@ -1,23 +1,43 @@
 import React, { useState } from "react";
 import MultiFieldContainer from "./MultiFieldContainer";
-
+import postNewArtist from "../../_assets/PostNewArtist";
+import { Redirect } from "react-router-dom";
 const ArtistNewTile = (props) => {
-  const [artistRecord, setArtistRecord] = useState({
+  const [newartistRecord, setnewArtistRecord] = useState({
     name: "",
     description: "",
     altName: [""],
     image: "",
   });
+
+  const [shouldRedirect, setShouldRedirect] = useState(false);
+
   const handleInputChange = (event) => {
-    setArtistRecord({
-      ...artistRecord,
+    setnewArtistRecord({
+      ...newartistRecord,
       [event.currentTarget.id]: event.currentTarget.value,
     });
   };
-
+  const submitArtist = () => {
+    event.preventDefault();
+    postNewArtist(newartistRecord, setShouldRedirect);
+  };
   const addNewArtistToggle = () => {
     props.setToggleNewArtist("");
   };
+  const handleAltNameChange = (event) => {
+    let altName = newartistRecord.altName;
+    altName[event.currentTarget.id] = event.currentTarget.value;
+
+    setnewArtistRecord({
+      ...newartistRecord,
+      altName,
+    });
+  };
+
+  if (shouldRedirect) {
+    return <Redirect to={`/artists/`} />;
+  }
 
   return (
     <div className={`modal ${props.toggleNewArtist}`}>
@@ -31,10 +51,10 @@ const ArtistNewTile = (props) => {
             aria-label="close"
           ></button>
         </header>
-        <section className="modal-card-body">
-          <form>
+        <form onSubmit={submitArtist}>
+          <section className="modal-card-body">
             <div className="field">
-              <label htmlFor="name"></label>
+              <label htmlFor="name">
               <div className="control">
                 <input
                   type="text"
@@ -43,14 +63,14 @@ const ArtistNewTile = (props) => {
                   className="input"
                   placeholder="Artist Name (required)"
                   onChange={handleInputChange}
-                  value={artistRecord.name}
+                  value={newartistRecord.name}
                   required
                 />
-              </div>
+              </div></label>
             </div>
 
             <div className="field">
-              <label htmlFor="description"></label>
+              <label htmlFor="description">
               <div className="control">
                 <input
                   type="text"
@@ -60,22 +80,24 @@ const ArtistNewTile = (props) => {
                   placeholder="One Line Identifier"
                   className="input"
                   onChange={handleInputChange}
-                  value={artistRecord.description}
+                  value={newartistRecord.description}
                 />
-              </div>
+              </div></label>
             </div>
             <MultiFieldContainer
-              handleInputChange={handleInputChange}
-              artistRecord={artistRecord}
+              handleAltNameChange={handleAltNameChange}
+              newartistRecord={newartistRecord}
             />
-          </form>
-        </section>
-        <footer className="modal-card-foot">
-          <button className="button">Submit</button>
-          <button className="button is-warning" onClick={addNewArtistToggle}>
-            Cancel
-          </button>
-        </footer>
+          </section>
+          <footer className="modal-card-foot">
+            <button className="button is-success" type="submit">
+              Submit
+            </button>
+            <button className="button is-warning" onClick={addNewArtistToggle}>
+              Cancel
+            </button>
+          </footer>
+        </form>
       </div>
     </div>
   );
