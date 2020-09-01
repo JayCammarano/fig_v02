@@ -31,7 +31,7 @@ const ArtistNewTile = (props) => {
           ></button>
         </header>
         <section class="modal-card-body">
-          <form className="center">
+          <form>
             <div className="field">
               <label htmlFor="name"></label>
                 <div class="control">
@@ -39,15 +39,13 @@ const ArtistNewTile = (props) => {
                     type="text"
                     id="name"
                     name="name"
-                    size="50"
-                    className="is-rounded"
+                    className="input"
                     placeholder="Artist Name (required)"
                     onChange={handleInputChange}
                     value={artistRecord.name}
                     required
                   />
                 </div>
-              
             </div>
 
             <div className="field">
@@ -58,12 +56,12 @@ const ArtistNewTile = (props) => {
                     id="description"
                     size="50"
                     name="description"
-                    placeholder="Description/Bio"
+                    placeholder="One Line Identifier"
+                    className="input"
                     onChange={handleInputChange}
                     value={artistRecord.description}
                   />
                 </div>
-         
             </div>
           </form>
         </section>
