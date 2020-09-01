@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-
+import MultiFieldContainer from "./MultiFieldContainer";
 
 const ArtistNewTile = (props) => {
   const [artistRecord, setArtistRecord] = useState({
     name: "",
     description: "",
-    alias: [""],
+    altName: [""],
     image: "",
   });
   const handleInputChange = (event) => {
@@ -31,40 +31,43 @@ const ArtistNewTile = (props) => {
             aria-label="close"
           ></button>
         </header>
-        <section class="modal-card-body">
+        <section className="modal-card-body">
           <form>
             <div className="field">
               <label htmlFor="name"></label>
-                <div class="control">
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    className="input"
-                    placeholder="Artist Name (required)"
-                    onChange={handleInputChange}
-                    value={artistRecord.name}
-                    required
-                  />
-                </div>
+              <div className="control">
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  className="input"
+                  placeholder="Artist Name (required)"
+                  onChange={handleInputChange}
+                  value={artistRecord.name}
+                  required
+                />
+              </div>
             </div>
 
             <div className="field">
               <label htmlFor="description"></label>
-                <div class="control">
-                  <input
-                    type="text"
-                    id="description"
-                    size="50"
-                    name="description"
-                    placeholder="One Line Identifier"
-                    className="input"
-                    onChange={handleInputChange}
-                    value={artistRecord.description}
-                  />
-                </div>
+              <div className="control">
+                <input
+                  type="text"
+                  id="description"
+                  size="50"
+                  name="description"
+                  placeholder="One Line Identifier"
+                  className="input"
+                  onChange={handleInputChange}
+                  value={artistRecord.description}
+                />
+              </div>
             </div>
-            
+            <MultiFieldContainer
+              handleInputChange={handleInputChange}
+              artistRecord={artistRecord}
+            />
           </form>
         </section>
         <footer className="modal-card-foot">

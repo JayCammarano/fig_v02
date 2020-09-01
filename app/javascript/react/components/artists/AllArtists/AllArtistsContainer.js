@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from "react";
+
 import NavBar from "../../Global/navbar/NavBar";
 import ArtistTile from "../ArtistTile";
 import ArtistPlaceholderTile from "./ArtistPlaceholderTile";
 import ArtistNewModal from "../NewArtist/ArtistNewModal"
+import AllArtistsFetch from "../../_assets/FetchAllArtists";
+import FetchAllArtists from "../../_assets/FetchAllArtists";
+
 const AllArtistsContainer = (props) => {
   const [getArtists, setArtists] = useState([
     { id: "", name: "", description: "" },
@@ -10,23 +14,18 @@ const AllArtistsContainer = (props) => {
   const [toggleNewArtist, setToggleNewArtist] = useState("");
 
   useEffect(() => {
-    fetch("/api/v1/artists")
-      .then((response) => {
-        if (response.ok) {
-          return response;
-        } else {
-          let errorMessage = `${response.status} (${response.statusText})`,
-            error = new Error(errorMessage);
-          throw error;
-        }
-      })
-
-      .then((response) => response.json())
-      .then((body) => {
-        setArtists(body);
-      })
-      .catch((error) => console.error(`Error in fetch: ${error.message}`));
+    FetchAllArtists(setArtists)
   }, []);
+  let artistTiles = getArtists.map((artist) => {
+    return (
+        <ArtistTile
+          id={artist.id}
+          key={artist.id}
+          name={artist.name}
+          description={artist.description}
+        />
+    );
+  });
 
   return (
     <div>
@@ -36,10 +35,8 @@ const AllArtistsContainer = (props) => {
         <div className="columnn is-one-fifth">
           <ArtistPlaceholderTile toggleNewArtist={toggleNewArtist} setToggleNewArtist={setToggleNewArtist}/>
         </div>
-        <div className="column is-one-fifth">
-          <ArtistTile />
+          {artistTiles}
         </div>
-      </div>
       <ArtistNewModal getArtists={getArtists} setArtist={setArtists} toggleNewArtist={toggleNewArtist} setToggleNewArtist={setToggleNewArtist}/>
     </div>
   );

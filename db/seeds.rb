@@ -5,3 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+tag1 = Tag.create(name: "heavy-metal")
+alt_name1 = AltName.create(name: "Alias1")
+alt_name2 = AltName.create(name: "Alias2")
+label1 = Label.create(name: "Polyvinyl", description: "A Label with of Montreal on it")
+artist1 = Artist.create(name: "Manilla Road", description: "Heavy metal band from a country that looks like a country")
