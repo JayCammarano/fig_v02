@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+
 const ArtistNewTile = (props) => {
   const [artistRecord, setArtistRecord] = useState({
     name: "",
@@ -63,6 +64,7 @@ const ArtistNewTile = (props) => {
                   />
                 </div>
             </div>
+            
           </form>
         </section>
         <footer className="modal-card-foot">
