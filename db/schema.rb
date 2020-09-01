@@ -10,10 +10,65 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_21_170339) do
+ActiveRecord::Schema.define(version: 2020_09_01_002235) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "alt_names", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "alt_names_artists", id: false, force: :cascade do |t|
+    t.bigint "artist_id", null: false
+    t.bigint "alt_name_id", null: false
+  end
+
+  create_table "artists", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "artists_releases", id: false, force: :cascade do |t|
+    t.bigint "artist_id", null: false
+    t.bigint "release_id", null: false
+  end
+
+  create_table "labels", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "labels_releases", id: false, force: :cascade do |t|
+    t.bigint "release_id", null: false
+    t.bigint "label_id", null: false
+  end
+
+  create_table "releases", force: :cascade do |t|
+    t.string "release_type", null: false
+    t.string "embed_url"
+    t.text "title", null: false
+    t.integer "original_release_year"
+    t.text "description", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "releases_tags", id: false, force: :cascade do |t|
+    t.bigint "release_id", null: false
+    t.bigint "tag_id", null: false
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email"
