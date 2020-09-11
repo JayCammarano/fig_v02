@@ -6,6 +6,7 @@ import LoginPage from "./Auth/LoginPage";
 import RegistrationPage from "./Auth/RegistrationPage";
 import axios from "axios";
 import AllArtistsContainer from "./artists/AllArtists/AllArtistsContainer";
+import ArtistShowPageContainer from "./artists/show/ArtistShowPage"
 
 export class App extends Component {
   constructor() {
@@ -99,7 +100,18 @@ export class App extends Component {
                 />
               )}
             />
-
+            <Route
+              exact
+              path={"/artists/:id"}
+              render={(props) => (
+                <ArtistShowPageContainer
+                  {...props}
+                  handleLogin={this.handleLogin}
+                  handleLogout={this.handleLogout}
+                  loggedInStatus={this.state.loggedInStatus}
+                />
+              )}
+            />
             <Route
               exact
               path={"/dashboard"}

@@ -1,5 +1,3 @@
-import React from 'react'
-
 const postNewArtist = (form) => {
     fetch(`/api/v1/artists`, {
       method: "POST",

@@ -3,6 +3,11 @@ class Api::V1::ArtistsController < ApplicationController
     render json: Artist.all
   end
 
+  def show
+    @artist = Artist.find(params[:id]) 
+    render json: @artist, serializer: ArtistReleaseSerializer
+  end
+
   def create
     new_artist = Artist.new(artist_params)
     Artist.alt_name_creator(new_artist, params[:altName])

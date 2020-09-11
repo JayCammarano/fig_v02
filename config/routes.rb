@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   get '/login', to: "static#index"
   get 'signup', to: "static#index"
   get '/artists', to: "static#index"
+  get '/artists/:id', to: 'static#index'
+
 
   get '/dashboard', to: "static#index"
   root 'static#index'
