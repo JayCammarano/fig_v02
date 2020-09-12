@@ -22,23 +22,17 @@ export const ReleasesTab = (props) => {
   });
 
   return (
-    <div>
-      <div>
-        <section className="container">
-          <div className="columns features is-multiline">
+          <div className="columns is-multiline p-l-lg">
             <div className="column is-one-third m-t-lg">
               <AddReleaseTile
                 artistID={props.artistID}
                 setToggleNewRelease={props.setToggleNewRelease}
                 toggleNewRelease={props.toggleNewRelease}
+                name={props.name}
               />
             </div>
-
             {releaseTiles}
           </div>
-        </section>
-      </div>
-    </div>
   );
 };
 export default ReleasesTab;
