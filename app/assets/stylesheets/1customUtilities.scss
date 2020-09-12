@@ -10,3 +10,8 @@
   align-items: center;
   float: right;
 }
+.overflow {
+  height: 200px;
+  overflow-y: scroll;
+  overflow-x:hidden;
+}
