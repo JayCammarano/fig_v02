@@ -30,7 +30,7 @@ export class Registration extends Component {
         this.props.handleSuccessfulAuth(response.data.status === "created");
       })
       .catch((error) => {
-        console.log("resgistration error", error);
+        console.log("registration error", error);
       });
     event.preventDefault();
   }

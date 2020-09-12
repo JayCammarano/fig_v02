@@ -66,7 +66,7 @@ export class Home extends Component {
         this.cardLoad = (
           <Registration handleSuccessfulAuth={this.handleSuccessfulAuth} />
         );
-        debugger;
+        
       } else if (formType === "Login") {
         this.size = "is-two-fifths";
 

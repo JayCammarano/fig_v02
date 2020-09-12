@@ -4,6 +4,7 @@ import FetchArtistID from "../../_assets/FetchArtistID";
 import { Link } from "react-router-dom";
 import ReleasesTab from "./ReleasesTab";
 import BioTab from "./BioTab";
+import ReleaseNewForm from "../../releases/new/ReleaseNewModal";
 
 const ArtistShowPageContainer = (props) => {
   let artistID = props.match.params.id;
@@ -13,7 +14,7 @@ const ArtistShowPageContainer = (props) => {
     name: "",
     description: "",
     imageCaller: "",
-    relatedReleases: [
+    releaseImageCaller: [
       {
         id: "",
         title: "",
@@ -25,6 +26,8 @@ const ArtistShowPageContainer = (props) => {
       },
     ],
   };
+  const [toggleNewRelease, setToggleNewRelease] = useState("");
+
   const [getArtist, setArtist] = useState(defaultArtist);
   const [whichTab, setWhichTab] = useState({ id: "releases" });
   const changeTabs = (tab) => {
@@ -50,6 +53,8 @@ const ArtistShowPageContainer = (props) => {
           artistID={artistID}
           image={getArtist.imageCaller}
           name={getArtist.name}
+          toggleNewRelease={toggleNewRelease}
+          setToggleNewRelease={setToggleNewRelease}
         />
       );
     } else if (whichTab.id === "bio") {
@@ -57,18 +62,16 @@ const ArtistShowPageContainer = (props) => {
       bioClass = "is-active";
       addClass = "";
 
-      musicData = <BioTab description={getArtist} artistID={artistID} />;
-    } else if (whichTab.id === "addArtist") {
-      releaseClass = "";
-      bioClass = "";
-      addClass = "is-active";
-
       musicData = (
-        <ReleaseNewForm artist={getArtist.name} artistID={artistID} />
+        <BioTab
+          description={getArtist}
+          artistID={artistID}
+          toggleNewRelease={toggleNewRelease}
+          setToggleNewRelease={setToggleNewRelease}
+        />
       );
     }
   }
-
   return (
     <>
       <NavBar loggedInStatus={props.loggedInStatus} />
@@ -101,18 +104,17 @@ const ArtistShowPageContainer = (props) => {
               <Link className="" to={`/artists/${artistID}/update`}>
                 Edit Info
               </Link>
-              <li
-                id="addArtist"
-                onClick={() => changeTabs("addArtist")}
-                className={addClass}
-              >
-                <a>Add Release</a>
-              </li>
             </ul>
           </div>
         </div>
       </section>
       {musicData}
+      <ReleaseNewForm
+        toggleNewRelease={toggleNewRelease}
+        setToggleNewRelease={setToggleNewRelease}
+        artist={getArtist.name}
+        artistID={artistID}
+      />
     </>
   );
 };

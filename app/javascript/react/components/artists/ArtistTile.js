@@ -2,9 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const ArtistTile = (props) => {
+  const artistID = props.id;
   return (
     <div className="is-one-fifth m-md">
-      <Link to={`/artists/`}>
+      <Link to={`/artists/${artistID}`}>
         <div className="card has-background-light">
           <figure className="image is-48by48">
             <img

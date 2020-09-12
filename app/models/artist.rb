@@ -24,10 +24,7 @@ class Artist < ApplicationRecord
   def releaseImageCaller
     releases = []
     self.releases.each do |release|
-      if release.images.first
-      releaseImage = release.images.first.attachment.url
-      end
-      releases << {release_type: release.release_type, year: release.original_release_year, id: release.id, title: release.title, image: releaseImage}
+      releases << {release_type: release.release_type, year: release.original_release_year, id: release.id, title: release.title}
     end
     releases
   end
