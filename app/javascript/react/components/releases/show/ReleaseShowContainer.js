@@ -21,6 +21,7 @@ const ReleaseShowContainer = (props) => {
     relatedLabels: [{ name: "" }],
     embed_url: "",
     description: "",
+    search_for_review: ""
   };
 
   const [getRelease, setRelease] = useState(defaultRelease);
@@ -36,7 +37,7 @@ const ReleaseShowContainer = (props) => {
       editClass = "";
       musicData = (
         <ReleaseDescription
-          description={getRelease.description}
+          description={getRelease.search_for_review}
           artists={getRelease.relatedArtists}
           labels={getRelease.relatedLabels}
         />

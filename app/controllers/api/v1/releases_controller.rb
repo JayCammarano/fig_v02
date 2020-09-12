@@ -6,6 +6,7 @@ class Api::V1::ReleasesController < ApplicationController
   end
 
   def create
+    @release = Release.new(release_params)
     if params[:artists]
       params[:artists].each do |artist|
         if artist === ""

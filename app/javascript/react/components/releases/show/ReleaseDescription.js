@@ -33,10 +33,10 @@ const ReleaseDescription = (props) => {
       <div className="column m-t-lg m-r-lg">
         <div className="card has-background-light">
           <h4 className="card-header-title has-text-dark">{props.name}</h4>
-          <p className="has-text-dark has-text-weight-bold is-size-4 p-lg">
+          <p className="has-text-dark has-text-weight-bold is-size-4 p-l-lg p-b-md">
             Description:
           </p>
-          <p className="has-text-dark p-lg">{props.description}</p>
+          <p className="has-text-dark p-b-lg p-l-lg p-r-lg">{props.description}</p>
         </div>
       </div>
       <p className="has-text-light has-text-weight-bold is-size-4 p-l-lg">
