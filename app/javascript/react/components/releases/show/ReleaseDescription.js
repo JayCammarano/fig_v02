@@ -16,13 +16,13 @@ const ReleaseDescription = (props) => {
   }, [props.description])
 
   const reviewSwitcher = () => {
-    debugger
+    
     if(document.getElementById("review").innerHTML === props.description[1]){
-      debugger
+      
       document.getElementById("review").innerHTML = props.description[0]}
       else{
         document.getElementById("review").innerHTML = props.description[1]
-        debugger
+        
       }
   }
   const artistListingArray = props.artists.map((artist) => {
