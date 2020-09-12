@@ -11,7 +11,7 @@ export class Home extends Component {
     this.handleSuccessfulAuth = this.handleSuccessfulAuth.bind(this);
     this.handleLogoutClick = this.handleLogoutClick.bind(this);
     this.cardLoad = <IntroCard />;
-    if (this.props.loggedInStatus == "NOT_LOGGED_IN") {
+    if (props.loggedInStatus === "NOT_LOGGED_IN"){
       this.cardFooter = (
         <footer className="card-footer">
           <a
@@ -38,7 +38,17 @@ export class Home extends Component {
         </footer>
       );
     } else {
-      this.cardFooter = null;
+      this.cardFooter = (
+        <footer className="card-footer">
+          <a
+            href="#"
+            className="card-footer-item"
+            onClick={() => this.toggleLoginRegister("Intro")}
+          >
+            Welcome
+          </a>
+        </footer>
+      );
     }
     this.size = "is-three-fifths";
   }
@@ -66,7 +76,6 @@ export class Home extends Component {
         this.cardLoad = (
           <Registration handleSuccessfulAuth={this.handleSuccessfulAuth} />
         );
-        
       } else if (formType === "Login") {
         this.size = "is-two-fifths";
 

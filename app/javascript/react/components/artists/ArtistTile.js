@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 const ArtistTile = (props) => {
   const artistID = props.id;
   return (
-    <div className="is-one-fifth m-md">
-      <Link to={`/artists/${artistID}`}>
         <div className="card has-background-light">
           <figure className="image is-48by48">
             <img
@@ -16,8 +14,6 @@ const ArtistTile = (props) => {
           </figure>
           <h4 className="card-header-title has-text-dark">{props.name}</h4>
         </div>
-      </Link>
-    </div>
   );
 };
 

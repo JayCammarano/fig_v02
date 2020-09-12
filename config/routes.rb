@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get 'signup', to: "static#index"
   get '/artists', to: "static#index"
   get '/artists/:id', to: 'static#index'
-
+  get '/artists/:artistid/releases/:id', to: 'static#index'
 
   get '/dashboard', to: "static#index"
   root 'static#index'
