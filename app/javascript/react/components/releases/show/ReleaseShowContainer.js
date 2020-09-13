@@ -21,7 +21,8 @@ const ReleaseShowContainer = (props) => {
     relatedLabels: [{ name: "" }],
     embed_url: "",
     description: "",
-    search_for_review: ""
+    search_for_review: "",
+    discogs_info: [{}]
   };
 
   const [getRelease, setRelease] = useState(defaultRelease);
@@ -37,9 +38,10 @@ const ReleaseShowContainer = (props) => {
       editClass = "";
       musicData = (
         <ReleaseDescription
-          description={getRelease.search_for_review}
+          description={getRelease}
           artists={getRelease.relatedArtists}
           labels={getRelease.relatedLabels}
+
         />
       );
     } else if (whichTab.id === "edit") {

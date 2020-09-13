@@ -1,15 +1,28 @@
 class ReleaseArtistsSerializer < ActiveModel::Serializer
-
-  attributes :id, :title, :release_type, :embed_url, :description, :original_release_year,:relatedArtists, :relatedLabels, :embed_url,  :search_for_review
-  require "my-p4k-ruby"
+  attributes :id, :title, :release_type, :embed_url, :description, :original_release_year,:relatedArtists, :relatedLabels, :embed_url,  :search_for_review, :discogs_info
   require "nokogiri"
-  # require 'nokogiri-styles'
-  require "json"
   require "httparty"
   require "uri"
-  
-    require 'uri'
+  require "discogs"
 
+  
+  def discogs_info
+    wrapper = Discogs::Wrapper.new("Fig", user_token: "oUjdTqbyrcgiSylnmPvCfygXsfHnlzgNIcDZvnpk")
+    masterID = wrapper.search(object.title, :per_page => 10, :type => :album)
+    release_info = wrapper.get_master_release(masterID.results[0].master_id)
+    credits = []
+    release_info.tracklist[0].extraartists.each do |artist|
+      if artist.anv != ""
+      artist_hash = { artist: artist.anv, role: artist.role }
+      else
+      artist_hash = { artist: artist.name, role: artist.role }
+      end
+      credits << artist_hash      
+    end
+    
+    credits
+    
+  end
   def search_for_review
     artist = URI.encode(object.artists.first.name)
     album = URI.encode(object.title)
@@ -28,6 +41,7 @@ class ReleaseArtistsSerializer < ActiveModel::Serializer
     pitchfork_object << review_digest_parsed
     pitchfork_object << full_review_parsed
   end
+
   def relatedArtists
     object.artists.each do |artist|
         artist.name

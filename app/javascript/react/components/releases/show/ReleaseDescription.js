@@ -1,30 +1,32 @@
 import React, { Fragment, useState, useEffect } from "react";
 import ArtistTile from "../../artists/ArtistTile";
 import ArtistInfoModal from "../../artists/ArtistInfoModal";
+import DiscogsTab from "./DiscogsTab";
+import PitchforkReview from "./PitchforkReview";
 const ReleaseDescription = (props) => {
   const [showHide, setShowHide] = useState(null);
   const [artistModalID, setartistModalID] = useState(null);
-
+  const [p4kCollapse, setp4kCollapse] = useState("hide")
+  const [whichTab, setWhichTab] = useState("pitchfork");
   const artistModalTrigger = (artistID) => {
     setartistModalID(artistID);
     setShowHide("is-active");
   };
+
+  let reviewData;
+  const reviewSwitcher = (tab) => {
+    setWhichTab(tab);
+  };
   
+    if (whichTab === "pitchfork") {
+      reviewData = (
+        <PitchforkReview p4kCollapse={p4kCollapse} setp4kCollapse={setp4kCollapse} reviews={props.description.search_for_review} />
+      );
+    } else{
+      reviewData = <DiscogsTab description={props.description.discogs_info} />;
+    }
 
-  useEffect(() => {
-    document.getElementById("review").innerHTML = props.description[0]
-  }, [props.description])
 
-  const reviewSwitcher = () => {
-    
-    if(document.getElementById("review").innerHTML === props.description[1]){
-      
-      document.getElementById("review").innerHTML = props.description[0]}
-      else{
-        document.getElementById("review").innerHTML = props.description[1]
-        
-      }
-  }
   const artistListingArray = props.artists.map((artist) => {
     return (
       <div
@@ -48,20 +50,27 @@ const ReleaseDescription = (props) => {
       <div className="column m-t-lg m-r-lg">
         <div className="card has-background-light">
           <h4 className="card-header-title has-text-dark">{props.name}</h4>
-          <p className="has-text-dark has-text-weight-bold is-size-4 p-l-lg p-b-md">
-            Review from Pitchfork:
+          {reviewData}
+          <p className="card-footer">
+            <a
+              className="card-footer-item has-text-dark"
+              onClick={() => reviewSwitcher("pitchfork")}
+            >
+              Pitchfork Full Review
+            </a>
+            <a
+              className="card-footer-item has-text-dark"
+              onClick={() => reviewSwitcher("metacritic")}
+            >
+              Metacritic
+            </a>
+            <a
+              className="card-footer-item has-text-dark"
+              onClick={() => reviewSwitcher("discogs")}
+            >
+              Discogs
+            </a>
           </p>
-          <p id="review" className="has-text-dark p-b-lg p-l-lg p-r-lg overflow">
-      
-          </p>
-          
-          <p className="card-footer p-l-lg p-b-md">
-            <a className="card-footer-item has-text-dark" onClick={reviewSwitcher}>Pitchfork</a>
-            <a className="card-footer-item has-text-dark" onClick={reviewSwitcher}>Metacritic</a>
-            <a className="card-footer-item has-text-dark" onClick={reviewSwitcher}>Discogs</a>
-
-          </p>
-
         </div>
       </div>
       <p className="has-text-light has-text-weight-bold is-size-4 p-l-lg">

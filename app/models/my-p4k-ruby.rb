@@ -16,7 +16,7 @@ class P4kReview
       @blob = blob
     end
   
-  def self.search_for_review(artist, album)
+  def search_for_review(artist, album)
     response = HTTParty.get("https://pitchfork.com/reviews/albums/18105-chance-the-rapper-acid-rap/")
     @parse_page = Nokogiri::HTML(response)
     puts @parse_page
