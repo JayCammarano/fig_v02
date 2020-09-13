@@ -14,7 +14,8 @@ Rails.application.routes.draw do
   root 'static#index'
   namespace :api do
     namespace :v1 do
-      resources :artists, only: [:index, :create, :new, :show, :update] do
+      resources :artists, only: [:index, :create, :new, :show, :update, :discogs] do
+        post 'discogs'
         resources :releases, only: [:show, :create, :new, :update]
       end
     end

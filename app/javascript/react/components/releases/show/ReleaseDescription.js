@@ -76,7 +76,7 @@ const ReleaseDescription = (props) => {
       <p className="has-text-light has-text-weight-bold is-size-4 p-l-lg">
         Artists:
       </p>
-      <div className="columns is-multilines p-lg">{artistListingArray}</div>
+      <div className="columns is-multiline p-lg">{artistListingArray}</div>
       <ArtistInfoModal
         artistID={artistModalID}
         showHide={showHide}

@@ -7,7 +7,7 @@ class ReleaseArtistsSerializer < ActiveModel::Serializer
 
   
   def discogs_info
-    wrapper = Discogs::Wrapper.new("Fig", user_token: "oUjdTqbyrcgiSylnmPvCfygXsfHnlzgNIcDZvnpk")
+    wrapper = Discogs::Wrapper.new("Fig", user_token: ENV["DISCOGS_API_KEY"])
     masterID = wrapper.search(object.title, :per_page => 10, :type => :album)
     release_info = wrapper.get_master_release(masterID.results[0].master_id)
     credits = []

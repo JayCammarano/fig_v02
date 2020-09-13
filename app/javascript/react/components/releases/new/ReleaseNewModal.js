@@ -2,15 +2,18 @@ import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import _ from "lodash";
 import MultipleArtistFields from "./MultipleArtistFields";
-import PostNewRelease from "../../_assets/PostNewRelease"
+import PostNewRelease from "../../_assets/PostNewRelease";
+import DiscogsAutofill from "../../_assets/DiscogsAutofill";
 
 const ReleaseNewForm = (props) => {
   let artist = props.artist;
-  let artistID = props.artistID
+  let artistID = props.artistID;
+  const starterArray = [{ title: "" }, { artist: "" }];
+  const [autoFill, setAutofill] = useState(starterArray);
   const [releaseRecord, setReleaseRecord] = useState({
     title: "",
     description: "",
-    artists: [artist],
+    artists: [""],
     release_type: "Album",
     original_release_year: 2020,
     embed_url: "",
@@ -23,8 +26,8 @@ const ReleaseNewForm = (props) => {
       release_type: "Album",
       original_release_year: 2020,
       embed_url: "",
-    })
-  }, [artist])
+    });
+  }, [artist]);
   const [shouldRedirect, setShouldRedirect] = useState(false);
   const [errors, setErrors] = useState("");
   const validForSubmission = () => {
@@ -52,7 +55,7 @@ const ReleaseNewForm = (props) => {
 
   const addNewRelease = (release) => {
     event.preventDefault();
-    PostNewRelease(release, setShouldRedirect, artistID)
+    PostNewRelease(release, setShouldRedirect, artistID);
   };
 
   if (shouldRedirect) {
@@ -72,6 +75,33 @@ const ReleaseNewForm = (props) => {
     props.setToggleNewRelease("");
   };
 
+  const FetchDiscogs = () => {
+    DiscogsAutofill(artistID, releaseRecord, setAutofill);
+  };
+  useEffect(() => {
+    let n = 1;
+    if (autoFill !== starterArray) {
+      autoFill.map((infoPiece) => {
+        if (Object.keys(infoPiece)[0] == "title") {
+          setReleaseRecord({
+            ...releaseRecord,
+            infoPiece,
+          });
+          debugger;
+
+        } else if (Object.keys(infoPiece)[0] === "artist") {
+          let artists = releaseRecord.artists;
+          artists[n] = Object.values(infoPiece)[0];
+
+          setReleaseRecord({
+            ...releaseRecord,
+            artists,
+          });
+          n = n + 1;
+        }
+      });
+    }
+  }, [autoFill]);
   return (
     <section className="columns center">
       <div className="column m-lg">
@@ -80,7 +110,11 @@ const ReleaseNewForm = (props) => {
           <div className="modal-card">
             <header className="modal-card-head">
               <p className="modal-card-title">Add Release</p>
-              <button className="delete" aria-label="close" onClick={addNewReleaseToggle}></button>
+              <button
+                className="delete"
+                aria-label="close"
+                onClick={addNewReleaseToggle}
+              ></button>
             </header>
             <form onSubmit={onSubmitHandeler}>
               <section className="modal-card-body">
@@ -126,6 +160,13 @@ const ReleaseNewForm = (props) => {
                     </div>
                   </label>
                 </div>
+                <button
+                  type="button"
+                  className="button is-primary p-b-md"
+                  onClick={FetchDiscogs}
+                >
+                  Autofill
+                </button>
                 <div className="field">
                   <label htmlFor="embed_url">
                     <div className="control">
@@ -160,10 +201,9 @@ const ReleaseNewForm = (props) => {
                 <MultipleArtistFields
                   handleArtistChange={handleArtistChange}
                   releaseRecord={releaseRecord}
-                  
                 />
                 <br />
-                <button className="button is-success" type="submit" >
+                <button className="button is-success" type="submit">
                   Submit
                 </button>
               </section>
