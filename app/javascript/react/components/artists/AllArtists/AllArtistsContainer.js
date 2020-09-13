@@ -18,7 +18,7 @@ const AllArtistsContainer = (props) => {
   }, []);
   let artistTiles = getArtists.map((artist) => {
     return (
-      <Link to={`/artists/${artist.id}}`} className="m-md" 
+      <Link to={`/artists/${artist.id}`} className="m-md" 
       key={artist.id}>
         <ArtistTile
           id={artist.id}

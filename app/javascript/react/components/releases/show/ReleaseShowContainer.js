@@ -1,9 +1,10 @@
 import React, { useState, useEffect, Fragment } from "react";
 import NavBar from "../../Global/navbar/NavBar";
-import ReleaseDescription from "./ReleaseDescription"
-import ReleaseUpdatePage from "../update/ReleaseUpdatePage"
-import FetchRelease from "../../_assets/FetchRelease"
-import SoundCloudEmbed from "./SoundCloudEmbed"
+import ReleaseDescription from "./ReleaseDescription";
+import ReleaseUpdatePage from "../update/ReleaseUpdatePage";
+import FetchRelease from "../../_assets/FetchRelease";
+import ArtistsTab from "./infotabs/ArtistsTab";
+import CarouselContainer from "./videos/CarouselContainer"
 const ReleaseShowContainer = (props) => {
   const artistID = props.match.params.artistid;
   const releaseID = props.match.params.id;
@@ -22,33 +23,43 @@ const ReleaseShowContainer = (props) => {
     embed_url: "",
     description: "",
     search_for_review: "",
-    discogs_info: [{}]
+    discogs_info: [[{}], [{url: "", title: "" }]]
+    
   };
 
   const [getRelease, setRelease] = useState(defaultRelease);
   useEffect(() => {
-    FetchRelease(artistID, releaseID, setRelease)
-  }, [artistID])
+    FetchRelease(artistID, releaseID, setRelease);
+  }, [artistID]);
   let musicData;
   let editClass = "";
+  let creditsClass = "";
   let descriptionClass = "is-active";
   if (getRelease !== defaultRelease) {
     if (whichTab.id === "description") {
       descriptionClass = "is-active";
       editClass = "";
-      musicData = (
-        <ReleaseDescription
-          description={getRelease}
-          artists={getRelease.relatedArtists}
-          labels={getRelease.relatedLabels}
+      creditsClass = "";
 
-        />
-      );
+      musicData = <ReleaseDescription description={getRelease} />;
     } else if (whichTab.id === "edit") {
       descriptionClass = "";
       editClass = "is-active";
+      creditsClass = "";
+
       musicData = (
         <ReleaseUpdatePage artistID={artistID} releaseID={releaseID} />
+      );
+    } else if (whichTab.id === "credits") {
+      descriptionClass = "";
+      editClass = "";
+      creditsClass = "is-active";
+
+      musicData = (
+        <ArtistsTab
+          artists={getRelease.relatedArtists}
+          labels={getRelease.relatedLabels}
+        />
       );
     }
   }
@@ -69,6 +80,13 @@ const ReleaseShowContainer = (props) => {
             >
               <a>info</a>
             </li>
+            <li
+              id="credits"
+              className={creditsClass}
+              onClick={() => changeTabs("credits")}
+            >
+              <a>credits</a>
+            </li>
 
             <li
               id="edit"
@@ -81,11 +99,11 @@ const ReleaseShowContainer = (props) => {
         </div>
       </section>
       <div>
-          <div className="columns">
-          <SoundCloudEmbed embed_url={getRelease.embed_url} />
-            {musicData}
-          </div>
+        <div className="columns">
+        <CarouselContainer embed_url={getRelease.embed_url} videos={getRelease.discogs_info[1]} />
+          {musicData}
         </div>
+      </div>
     </>
   );
 };

@@ -27,7 +27,7 @@ const PitchforkReview = (props) => {
       ></p>
       <p
         onClick={fullReview}
-        className="has-text-dark p-b-lg p-l-lg p-r-lg"
+        className="has-text-dark has-text-weight-bold p-b-lg p-l-lg p-r-lg"
       >
         More/Less
       </p>

@@ -1,6 +1,5 @@
 import React, { useState, Fragment } from "react";
 import ArtistField from "./ArtistField";
-import DiscogsQuery from "./DiscogsQueryContainer";
 
 const multipleArtistFields = (props) => {
   // number of fields to make state

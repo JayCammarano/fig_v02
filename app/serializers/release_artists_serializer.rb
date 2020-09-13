@@ -10,6 +10,8 @@ class ReleaseArtistsSerializer < ActiveModel::Serializer
     wrapper = Discogs::Wrapper.new("Fig", user_token: ENV["DISCOGS_API_KEY"])
     masterID = wrapper.search(object.title, :per_page => 10, :type => :album)
     release_info = wrapper.get_master_release(masterID.results[0].master_id)
+    discogs_hash = []
+
     credits = []
     release_info.tracklist[0].extraartists.each do |artist|
       if artist.anv != ""
@@ -19,8 +21,14 @@ class ReleaseArtistsSerializer < ActiveModel::Serializer
       end
       credits << artist_hash      
     end
-    
-    credits
+
+    videos = []
+    release_info.videos.each do |video|
+      video_hash = {url: video.uri, title: video.title}
+      videos << video_hash
+    end
+    discogs_hash << credits
+    discogs_hash << videos
     
   end
   def search_for_review

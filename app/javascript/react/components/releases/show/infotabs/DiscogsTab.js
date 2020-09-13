@@ -1,10 +1,10 @@
 import React from "react";
 
 const DiscogsTab = (props) => {
-  const artistList = props.description.map((artist) => {
+  const artistList = props.description[0].map((artist) => {
     return (
       <li>
-        {artist.artist}, {artist.role}{" "}
+        {artist.artist}, {artist.role}
       </li>
     );
   });

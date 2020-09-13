@@ -3,7 +3,6 @@ import { Redirect } from "react-router-dom";
 import _ from "lodash";
 import MultipleArtistFields from "./MultipleArtistFields";
 import PostNewRelease from "../../_assets/PostNewRelease";
-import DiscogsAutofill from "../../_assets/DiscogsAutofill";
 
 const ReleaseNewForm = (props) => {
   let artist = props.artist;
