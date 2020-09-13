@@ -14,11 +14,9 @@ const CarouselContainer = (props) => {
 
   const customRenderThumb = (children) =>
     children.map((item) => {
-      debugger
-      if (item.type.name === "YoutubeSlide") { 
-        debugger
+      if (item.type.name === "YoutubeSlide") {
         const videoId = getVideoId(item.props.url);
-        
+
         return <img src={getVideoThumb(videoId)} />;
       } else {
         return (
