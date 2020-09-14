@@ -5,7 +5,7 @@ class CreateReleases < ActiveRecord::Migration[5.2]
       t.string :embed_url
       t.text :title, null: false
       t.integer :original_release_year
-      t.text :description, null: false
+      t.text :description
       t.timestamps
     end
   end

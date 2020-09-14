@@ -13,6 +13,8 @@
 !/log/.keep
 !/tmp/.keep
 
+# Ignore uploaded files in test/development
+/public/uploads
 
 /node_modules
 /yarn-error.log

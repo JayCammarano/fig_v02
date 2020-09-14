@@ -10,14 +10,14 @@ class Api::V1::ArtistsController < ApplicationController
     credits = []
     artistID = wrapper.search(params["artists"][0], :per_page => 10, :type => :artist).results[0]["id"]
     releases = wrapper.get_artist_releases(artistID)
-    
- 
-    
+
     releases.releases.each do |title|
       if title.title.include?(release_params["title"])
         binding.pry
         albumBlob = wrapper.get_master_release(title.id)
         titleBlob = {title: title.title}
+        yearBlob = {year: title.year}
+        credits << yearBlob
         credits << titleBlob
         albumBlob.tracklist.each do |track|
           track.extraartists.each do |artist|          
@@ -33,7 +33,6 @@ class Api::V1::ArtistsController < ApplicationController
         end
       end
     end
-    
     render json: credits
 
   end
@@ -45,6 +44,15 @@ class Api::V1::ArtistsController < ApplicationController
 
   def create
     new_artist = Artist.new(artist_params)
+    
+    binding.pry
+    
+    image = Image.create(attachment: params[:image])    
+    
+    binding.pry
+         
+    new_artist.images << image
+
     Artist.alt_name_creator(new_artist, params[:altName])
         
     if new_artist.save
@@ -56,7 +64,7 @@ class Api::V1::ArtistsController < ApplicationController
 
   private
   def artist_params
-    params.permit(:name, :description, :altName)
+    params.permit(:name, :description, :altName, :image)
   end
   def release_params
     params.permit(:title, :description, :original_release_year, :release_type, :embed_url, :artists)

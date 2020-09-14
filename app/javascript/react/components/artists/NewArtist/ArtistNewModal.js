@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import MultiFieldContainer from "./MultiFieldContainer";
 import postNewArtist from "../../_assets/PostNewArtist";
 import { Redirect } from "react-router-dom";
+import ImageUploader from "./ImageUploader"
 const ArtistNewTile = (props) => {
   const [newartistRecord, setnewArtistRecord] = useState({
     name: "",
     description: "",
     altName: [""],
-    image: "",
+    image: [""]
   });
 
   const handleInputChange = (event) => {
@@ -84,6 +85,11 @@ const ArtistNewTile = (props) => {
               handleAltNameChange={handleAltNameChange}
               newartistRecord={newartistRecord}
             />
+            <ImageUploader
+              setnewArtistRecord={setnewArtistRecord}
+              newartistRecord={newartistRecord}
+            />
+
             <button className="button is-success" type="submit">
               Submit
             </button>

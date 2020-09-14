@@ -4,7 +4,6 @@
   align-items: center;
 }
 .right {
-
   display: flex;
   justify-content: right;
   align-items: center;
@@ -12,6 +11,11 @@
 }
 .overflow {
   height: 200px;
+  overflow-y: scroll;
+  overflow-x:hidden;
+}
+.overflowMD {
+  height: 400px;
   overflow-y: scroll;
   overflow-x:hidden;
 }

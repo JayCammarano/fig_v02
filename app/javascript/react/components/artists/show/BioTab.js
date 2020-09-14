@@ -9,7 +9,7 @@ const BioTab = (props) => {
           <h4 className="card-header-title has-text-dark m-l-md">
             Bio from Last.fm
           </h4>
-          <p className="p-l-lg p-r-lg p-b-lg has-text-dark">
+          <p className="p-l-lg p-r-lg p-b-lg has-text-dark overflowMD">
             {props.description.lastfmCaller.bio}
           </p>
         </div>

@@ -57,3 +57,4 @@ gem 'rack-cors', '~> 1.1', '>= 1.1.1'
 gem 'active_model_serializers', '~> 0.10.0' 
 gem 'httparty'
 gem "discogs-wrapper"
+gem "carrierwave"

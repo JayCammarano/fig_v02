@@ -3,6 +3,7 @@ import { Redirect } from "react-router-dom";
 import _ from "lodash";
 import MultipleArtistFields from "./MultipleArtistFields";
 import PostNewRelease from "../../_assets/PostNewRelease";
+import DiscogsAutofill from "../../_assets/DiscogsAutofill";
 
 const ReleaseNewForm = (props) => {
   let artist = props.artist;
@@ -27,6 +28,7 @@ const ReleaseNewForm = (props) => {
       embed_url: "",
     });
   }, [artist]);
+
   const [shouldRedirect, setShouldRedirect] = useState(false);
   const [errors, setErrors] = useState("");
   const validForSubmission = () => {
@@ -77,6 +79,7 @@ const ReleaseNewForm = (props) => {
   const FetchDiscogs = () => {
     DiscogsAutofill(artistID, releaseRecord, setAutofill);
   };
+
   useEffect(() => {
     let n = 1;
     if (autoFill !== starterArray) {
@@ -84,10 +87,8 @@ const ReleaseNewForm = (props) => {
         if (Object.keys(infoPiece)[0] == "title") {
           setReleaseRecord({
             ...releaseRecord,
-            infoPiece,
+            [title]: infoPiece.title
           });
-          debugger;
-
         } else if (Object.keys(infoPiece)[0] === "artist") {
           let artists = releaseRecord.artists;
           artists[n] = Object.values(infoPiece)[0];
@@ -97,6 +98,12 @@ const ReleaseNewForm = (props) => {
             artists,
           });
           n = n + 1;
+        } else if (Object.keys(infoPiece)[0] === "year") {
+          debugger;
+          setReleaseRecord({
+            ...releaseRecord,
+            [original_release_year]: infoPiece.year,
+          });
         }
       });
     }
