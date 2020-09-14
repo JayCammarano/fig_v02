@@ -9,7 +9,7 @@ import FetchAllArtists from "../../_assets/FetchAllArtists";
 
 const AllArtistsContainer = (props) => {
   const [getArtists, setArtists] = useState([
-    { id: "", name: "", description: "" },
+    { id: "", name: "", description: "", image: ""},
   ]);
   const [toggleNewArtist, setToggleNewArtist] = useState("");
 
@@ -25,6 +25,7 @@ const AllArtistsContainer = (props) => {
           key={artist.id}
           name={artist.name}
           description={artist.description}
+          image={artist.imageCaller}
         />
         </Link>
     );

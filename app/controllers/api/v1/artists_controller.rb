@@ -13,7 +13,6 @@ class Api::V1::ArtistsController < ApplicationController
 
     releases.releases.each do |title|
       if title.title.include?(release_params["title"])
-        binding.pry
         albumBlob = wrapper.get_master_release(title.id)
         titleBlob = {title: title.title}
         yearBlob = {year: title.year}
@@ -44,13 +43,7 @@ class Api::V1::ArtistsController < ApplicationController
 
   def create
     new_artist = Artist.new(artist_params)
-    
-    binding.pry
-    
-    image = Image.create(attachment: params[:image])    
-    
-    binding.pry
-         
+    image = Image.create(attachment: params[:image])             
     new_artist.images << image
 
     Artist.alt_name_creator(new_artist, params[:altName])
