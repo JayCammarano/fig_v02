@@ -37,8 +37,17 @@ class Api::V1::ArtistsController < ApplicationController
   end
 
   def show
-    @artist = Artist.find(params[:id]) 
-    render json: @artist, serializer: ArtistReleaseSerializer
+    begin
+      @artist = Artist.find(params[:id]) 
+      render json: @artist, serializer: ArtistReleaseSerializer
+     rescue ActiveRecord::RecordNotFound  
+      error = {
+        error: "Artist not found",
+        status: 400
+      }
+      render :json => error, :status => :bad_request
+      return
+     end
   end
 
   def create
