@@ -15,7 +15,6 @@ RSpec.describe Api::V1::ReleasesController, type: :controller do
       it "returns the release information" do
         artist1 = release1.artists.first
         get :show, params: {artist_id: artist1.id, id: release1.id}
-
         returned_json = JSON.parse(response.body)
 
         expect(returned_json["id"]).to eq(release1.id)
