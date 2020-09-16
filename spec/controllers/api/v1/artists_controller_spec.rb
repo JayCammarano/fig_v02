@@ -17,7 +17,6 @@ RSpec.describe Api::V1::ArtistsController, type: :controller do
 
       returned_json = JSON.parse(response.body)
       
-      
       expect(returned_json[0]["id"]).to eq(artist1.id)
       expect(returned_json[0]["name"]).to eq(artist1.name)
       expect(returned_json[0]["description"]).to eq(artist1.description)
@@ -85,7 +84,7 @@ RSpec.describe Api::V1::ArtistsController, type: :controller do
       expect(returned_json["name"]).to eq(artist1.name)
       expect(returned_json["description"]).to eq(artist1.description)
     end
-    
+
     context "when a request with the correct params is made" do
       it "returns a status of 400" do
         bad_artist = {bad_artist: bad_artist}
@@ -104,5 +103,52 @@ RSpec.describe Api::V1::ArtistsController, type: :controller do
       expect(returned_json["error"]).to eq("Artist not found")
       expect(returned_json["status"]).to eq(400)
     end
+  end
+
+  describe "GET#discogs" do
+    let!(:release1) {FactoryBot.create(:release)}
+    context "when a request is made for a release in the discogs database" do
+      it "returns a status of 200" do    
+        artists = []    
+        release1.artists.each do |artist|
+          artists << artist.name
+        end
+        
+        post :discogs, params: {title: release1.title, description: release1.description, artists: artists, "embed_url"=>release1.embed_url, controller: "api/v1/artists", action: "discogs", artist_id: release1.artists.first.id}
+        returned_json = JSON.parse(response.body)
+            
+        expect(response.status).to eq 200
+        expect(response.content_type).to eq "application/json"
+      end
+      it "returns the artists and original release year" do    
+        artists = []    
+        release1.artists.each do |artist|
+          artists << artist.name
+        end
+        post :discogs, params: {title: release1.title, description: release1.description, artists: artists, "embed_url"=>release1.embed_url, controller: "api/v1/artists", action: "discogs", artist_id: release1.artists.first.id}
+        returned_json = JSON.parse(response.body)            
+
+        
+        expect(response.status).to eq 200
+        expect(response.content_type).to eq "application/json"
+        expect(returned_json[0]).to eq({"year"=>2013})
+        expect(returned_json[1]).to eq({"title"=>"Acid Rap"})
+        expect(returned_json[2]).to eq({"artist"=>"BJ The Chicago Kid"})
+      end
+    end
+    context "when a request is made for a release not the discogs database" do
+      it "returns a status of 400" do    
+        artists = ["asadasdasdasddascrw4trwdfs"]    
+        post :discogs, params: {title: release1.title, description: release1.description, artists: artists, "embed_url"=>release1.embed_url, controller: "api/v1/artists", action: "discogs", artist_id: release1.artists.first.id}
+        returned_json = JSON.parse(response.body)
+
+        expect(response.status).to eq 400
+        expect(response.content_type).to eq "application/json"
+        expect(returned_json["error"]).to eq("Artist not found")
+        expect(returned_json["status"]).to eq(400)
+  
+      end
+    end
+
   end
 end

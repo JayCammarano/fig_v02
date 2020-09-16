@@ -8,32 +8,40 @@ class Api::V1::ArtistsController < ApplicationController
   def discogs
     wrapper = Discogs::Wrapper.new("Fig", user_token: ENV["DISCOGS_API_KEY"])
     credits = []
-    artistID = wrapper.search(params["artists"][0], :per_page => 10, :type => :artist).results[0]["id"]
-    releases = wrapper.get_artist_releases(artistID)
-
-    releases.releases.each do |title|
-      if title.title.include?(release_params["title"])
-        albumBlob = wrapper.get_master_release(title.id)
-        titleBlob = {title: title.title}
-        yearBlob = {year: title.year}
-        credits << yearBlob
-        credits << titleBlob
-        albumBlob.tracklist.each do |track|
-          track.extraartists.each do |artist|          
-            if artist["role"] === "Featuring"
-              if artist["anv"] != ""
-                artist_hash = {artist: artist["anv"]}
-              else
-                artist_hash = {artist: artist["name"]}
+    search = wrapper.search(params["artists"][0], :per_page => 10, :type => :artist)
+    if search.results[0] != nil      
+      artistID = search.results[0]["id"]
+      releases = wrapper.get_artist_releases(artistID)
+      releases.releases.each do |release|
+        if release.title.include?(release_params["title"])
+          albumBlob = wrapper.get_master_release(release.id)
+          titleBlob = {title: release.title}
+          yearBlob = {year: release.year}
+          credits << yearBlob
+          credits << titleBlob
+          albumBlob.tracklist.each do |track|
+            track.extraartists.each do |artist|          
+              if artist["role"] === "Featuring"
+                if artist["anv"] != ""
+                  artist_hash = {artist: artist["anv"]}
+                else
+                  artist_hash = {artist: artist["name"]}
+                end
+                credits << artist_hash 
               end
-              credits << artist_hash 
             end
           end
         end
+        credits
       end
-    end
     render json: credits
-
+    else
+      error = {
+        error: "Artist not found",
+        status: 400
+      }
+      render :json => error, :status => :bad_request
+    end
   end
 
   def show
