@@ -6,6 +6,8 @@ import LoginPage from "./Auth/LoginPage";
 import RegistrationPage from "./Auth/RegistrationPage";
 import axios from "axios";
 import AllArtistsContainer from "./artists/AllArtists/AllArtistsContainer";
+import ArtistShowPageContainer from "./artists/show/ArtistShowPage";
+import ReleaseShowContainer from "./releases/show/ReleaseShowContainer";
 
 export class App extends Component {
   constructor() {
@@ -99,7 +101,18 @@ export class App extends Component {
                 />
               )}
             />
-
+            <Route
+              exact
+              path={"/artists/:id"}
+              render={(props) => (
+                <ArtistShowPageContainer
+                  {...props}
+                  handleLogin={this.handleLogin}
+                  handleLogout={this.handleLogout}
+                  loggedInStatus={this.state.loggedInStatus}
+                />
+              )}
+            />
             <Route
               exact
               path={"/dashboard"}
@@ -117,6 +130,19 @@ export class App extends Component {
               render={(props) => (
                 <AllArtistsContainer
                   {...props}
+                  loggedInStatus={this.state.loggedInStatus}
+                />
+              )}
+            />
+
+            <Route
+              exact
+              path={"/artists/:artistid/releases/:id"}
+              render={(props) => (
+                <ReleaseShowContainer
+                  {...props}
+                  handleLogin={this.handleLogin}
+                  handleLogout={this.handleLogout}
                   loggedInStatus={this.state.loggedInStatus}
                 />
               )}

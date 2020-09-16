@@ -1,28 +1,28 @@
-import React from 'react'
-
 const postNewArtist = (form) => {
-    fetch(`/api/v1/artists`, {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(form),
-    })
-      .then((response) => {
-        if (response.ok) {
-          
-          return response;
-        } else {
-          let errorMessage = `${response.status} (${response.statusText})`,
-            error = new Error(errorMessage);
-          throw error;
-        }
-      })
-      .then((response) => response.json())
-      .then((body) => {
-      })
-      .catch((error) => console.error(`Error in fetch: ${error.message}`));
+  let body = new FormData();
+  body.append("name", form.name);
+  body.append("description", form.description);
+  form.altName.forEach((altName) => {
+    body.append("alt_name", altName);
+  });
+  body.append("image", form.image[0]);
   
-    };
+  fetch(`/api/v1/artists`, {
+    method: "POST",
+    body: body,
+  })
+    .then((response) => {
+      if (response.ok) {
+        return response;
+      } else {
+        let errorMessage = `${response.status} (${response.statusText})`,
+          error = new Error(errorMessage);
+        throw error;
+      }
+    })
+    .then((response) => response.json())
+    .then((body) => {})
+    .catch((error) => console.error(`Error in fetch: ${error.message}`));
+};
 
-export default postNewArtist
+export default postNewArtist;

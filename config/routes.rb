@@ -7,12 +7,15 @@ Rails.application.routes.draw do
   get '/login', to: "static#index"
   get 'signup', to: "static#index"
   get '/artists', to: "static#index"
+  get '/artists/:id', to: 'static#index'
+  get '/artists/:artistid/releases/:id', to: 'static#index'
 
   get '/dashboard', to: "static#index"
   root 'static#index'
   namespace :api do
     namespace :v1 do
-      resources :artists, only: [:index, :create, :new, :show, :update] do
+      resources :artists, only: [:index, :create, :new, :show, :update, :discogs] do
+        post 'discogs'
         resources :releases, only: [:show, :create, :new, :update]
       end
     end

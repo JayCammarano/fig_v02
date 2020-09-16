@@ -14,7 +14,7 @@ const ArtistPlaceholderTile = (props) => {
           alt="Artist Image"
         />
       </figure>
-      <h4 className="card-header-title has-text-dark" >
+      <h4 className="card-header-title has-text-dark">
         Add a New Artist
       </h4>
     </div>

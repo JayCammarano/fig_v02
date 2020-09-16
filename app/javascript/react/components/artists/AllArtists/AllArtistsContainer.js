@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-
+import React, { useState, useEffect, Fragment } from "react";
+import {Link} from "react-router-dom"
 import NavBar from "../../Global/navbar/NavBar";
 import ArtistTile from "../ArtistTile";
 import ArtistPlaceholderTile from "./ArtistPlaceholderTile";
@@ -9,7 +9,7 @@ import FetchAllArtists from "../../_assets/FetchAllArtists";
 
 const AllArtistsContainer = (props) => {
   const [getArtists, setArtists] = useState([
-    { id: "", name: "", description: "" },
+    { id: "", name: "", description: "", image: ""},
   ]);
   const [toggleNewArtist, setToggleNewArtist] = useState("");
 
@@ -18,12 +18,16 @@ const AllArtistsContainer = (props) => {
   }, []);
   let artistTiles = getArtists.map((artist) => {
     return (
+      <Link to={`/artists/${artist.id}`} className="m-md" 
+      key={artist.id}>
         <ArtistTile
           id={artist.id}
           key={artist.id}
           name={artist.name}
           description={artist.description}
+          image={artist.imageCaller}
         />
+        </Link>
     );
   });
 

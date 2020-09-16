@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_01_002739) do
+ActiveRecord::Schema.define(version: 2020_09_14_203513) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,13 +29,24 @@ ActiveRecord::Schema.define(version: 2020_09_01_002739) do
   create_table "artists", force: :cascade do |t|
     t.string "name", null: false
     t.text "description"
+    t.string "role"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image"
   end
 
   create_table "artists_releases", id: false, force: :cascade do |t|
     t.bigint "artist_id", null: false
     t.bigint "release_id", null: false
+  end
+
+  create_table "images", force: :cascade do |t|
+    t.string "attachment"
+    t.bigint "imageable_id"
+    t.string "imageable_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["imageable_type", "imageable_id"], name: "index_images_on_imageable_type_and_imageable_id"
   end
 
   create_table "labels", force: :cascade do |t|
@@ -55,7 +66,7 @@ ActiveRecord::Schema.define(version: 2020_09_01_002739) do
     t.string "embed_url"
     t.text "title", null: false
     t.integer "original_release_year"
-    t.text "description", null: false
+    t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

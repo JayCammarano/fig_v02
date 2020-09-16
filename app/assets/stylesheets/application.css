@@ -16,3 +16,4 @@
 @import "bulma";
 @import "1customUtilities.scss";
 @import "3bulmaswatch.min.scss";
+@import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader

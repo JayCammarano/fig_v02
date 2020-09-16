@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import MultiFieldContainer from "./MultiFieldContainer";
 import postNewArtist from "../../_assets/PostNewArtist";
 import { Redirect } from "react-router-dom";
+import ImageUploader from "./ImageUploader"
 const ArtistNewTile = (props) => {
   const [newartistRecord, setnewArtistRecord] = useState({
     name: "",
     description: "",
     altName: [""],
-    image: "",
+    image: [""]
   });
 
   const handleInputChange = (event) => {
@@ -49,48 +50,53 @@ const ArtistNewTile = (props) => {
           <section className="modal-card-body">
             <div className="field">
               <label htmlFor="name">
-              <div className="control">
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  className="input"
-                  placeholder="Artist Name (required)"
-                  onChange={handleInputChange}
-                  value={newartistRecord.name}
-                  required
-                />
-              </div></label>
+                <div className="control">
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    className="input"
+                    placeholder="Artist Name (required)"
+                    onChange={handleInputChange}
+                    value={newartistRecord.name}
+                    required
+                  />
+                </div>
+              </label>
             </div>
 
             <div className="field">
               <label htmlFor="description">
-              <div className="control">
-                <input
-                  type="text"
-                  id="description"
-                  size="50"
-                  name="description"
-                  placeholder="One Line Identifier"
-                  className="input"
-                  onChange={handleInputChange}
-                  value={newartistRecord.description}
-                />
-              </div></label>
+                <div className="control">
+                  <input
+                    type="text"
+                    id="description"
+                    size="50"
+                    name="description"
+                    placeholder="One Line Identifier"
+                    className="input"
+                    onChange={handleInputChange}
+                    value={newartistRecord.description}
+                  />
+                </div>
+              </label>
             </div>
             <MultiFieldContainer
               handleAltNameChange={handleAltNameChange}
               newartistRecord={newartistRecord}
             />
-          </section>
-          <footer className="modal-card-foot">
+            <ImageUploader
+              setnewArtistRecord={setnewArtistRecord}
+              newartistRecord={newartistRecord}
+            />
+
             <button className="button is-success" type="submit">
               Submit
             </button>
             <button className="button is-warning" onClick={addNewArtistToggle}>
               Cancel
             </button>
-          </footer>
+          </section>
         </form>
       </div>
     </div>

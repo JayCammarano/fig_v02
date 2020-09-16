@@ -1,5 +1,3 @@
-import React from "react";
-
 const FetchAllArtists = (setter) => {
   fetch("/api/v1/artists")
     .then((response) => {
