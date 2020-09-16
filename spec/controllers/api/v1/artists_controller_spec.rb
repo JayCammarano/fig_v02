@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Api::V1::ArtistsController, type: :controller do
   describe "GET#Index" do
-    let!(:artist1) {FactoryBot.create(:artist)}
+    let!(:image1) {FactoryBot.create(:image)}
+    let!(:artist1) {FactoryBot.create(:artist, images: [image1])}
     let!(:artist2) {FactoryBot.create(:artist)}
 
     it "returns a status of 200" do
@@ -17,15 +18,17 @@ RSpec.describe Api::V1::ArtistsController, type: :controller do
 
       returned_json = JSON.parse(response.body)
       
+      binding.pry
+      
       expect(returned_json[0]["id"]).to eq(artist1.id)
       expect(returned_json[0]["name"]).to eq(artist1.name)
       expect(returned_json[0]["description"]).to eq(artist1.description)
-      expect(returned_json[0]['imageCaller']).to eq(artist1.images.first)
+      expect(returned_json[0]['imageCaller']).to eq(artist1.images.first.attachment.url)
      
       expect(returned_json[1]["id"]).to eq(artist2.id)
       expect(returned_json[1]["name"]).to eq(artist2.name)
       expect(returned_json[1]["description"]).to eq(artist2.description)
-      expect(returned_json[0]['imageCaller']).to eq(artist1.images.first)  
+      expect(returned_json[1]['imageCaller']).to eq({"error" => "No artist image"})  
     end
   end
 

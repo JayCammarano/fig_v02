@@ -28,7 +28,6 @@ RSpec.describe Artist, type: :model do
         expect(releases[1][:title]).to eq(artist.releases.last.title)
       end
     end
-
   end
 
   describe "lastfmCaller" do
@@ -51,7 +50,6 @@ RSpec.describe Artist, type: :model do
         expect(lastFMInfo).to eq({error: "Artist not found in last.fm DB"})
       end
     end
-
   end
   
   describe "imageCaller" do
@@ -77,6 +75,7 @@ RSpec.describe Artist, type: :model do
       end
     end
   end
+  
   describe "alt_name_creator" do
     alt_name1 = AltName.new(name: "test")
     alt_name2 = AltName.new(name: "test2")
@@ -97,6 +96,5 @@ RSpec.describe Artist, type: :model do
         expect(artist_without_alt_name.alt_names.first.nil?).to eq(true)
       end
     end
-
   end
 end
