@@ -34,14 +34,11 @@ RSpec.describe Api::V1::ArtistsController, type: :controller do
     context "when a request with the correct params is made" do
       it "adds a new artist to the database" do
         previous_count = Artist.count
-        
         post :create, :params =>  {:name => artist1.name }
-        
         new_count = Artist.count
-
+        
         expect(response.status).to eq 200
         expect(response.content_type).to eq "application/json"
-
         expect(new_count).to eq(previous_count + 1)
       end
 
@@ -89,19 +86,13 @@ RSpec.describe Api::V1::ArtistsController, type: :controller do
       it "returns a status of 400" do
         bad_artist = {bad_artist: bad_artist}
         get :show, params: { id: bad_artist }
-            
+        returned_json = JSON.parse(response.body)
+
         expect(response.status).to eq 400
         expect(response.content_type).to eq "application/json"
+        expect(returned_json["error"]).to eq("Artist not found")
+        expect(returned_json["status"]).to eq(400)
       end
-    end
-
-    it "returns an error" do
-      bad_artist = {bad_artist: bad_artist}
-      get :show, params: { id: bad_artist }
-      returned_json = JSON.parse(response.body)
-
-      expect(returned_json["error"]).to eq("Artist not found")
-      expect(returned_json["status"]).to eq(400)
     end
   end
 
@@ -120,6 +111,7 @@ RSpec.describe Api::V1::ArtistsController, type: :controller do
         expect(response.status).to eq 200
         expect(response.content_type).to eq "application/json"
       end
+
       it "returns the artists and original release year" do    
         artists = []    
         release1.artists.each do |artist|
@@ -128,7 +120,6 @@ RSpec.describe Api::V1::ArtistsController, type: :controller do
         post :discogs, params: {title: release1.title, description: release1.description, artists: artists, "embed_url"=>release1.embed_url, controller: "api/v1/artists", action: "discogs", artist_id: release1.artists.first.id}
         returned_json = JSON.parse(response.body)            
 
-        
         expect(response.status).to eq 200
         expect(response.content_type).to eq "application/json"
         expect(returned_json[0]).to eq({"year"=>2013})
@@ -136,8 +127,9 @@ RSpec.describe Api::V1::ArtistsController, type: :controller do
         expect(returned_json[2]).to eq({"artist"=>"BJ The Chicago Kid"})
       end
     end
+
     context "when a request is made for a release not the discogs database" do
-      it "returns a status of 400" do    
+      it "returns a status of 400 and an error" do    
         artists = ["asadasdasdasddascrw4trwdfs"]    
         post :discogs, params: {title: release1.title, description: release1.description, artists: artists, "embed_url"=>release1.embed_url, controller: "api/v1/artists", action: "discogs", artist_id: release1.artists.first.id}
         returned_json = JSON.parse(response.body)

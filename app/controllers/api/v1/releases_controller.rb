@@ -1,11 +1,24 @@
 class Api::V1::ReleasesController < ApplicationController
+  wrap_parameters false
+
   def show
-    @artist = Artist.find(params[:artist_id]) 
-    @release = @artist.releases.find(params[:id])
-    render json: @release, serializer: ReleaseArtistsSerializer
+    begin
+      @artist = Artist.find(params[:artist_id]) 
+      @release = @artist.releases.find(params[:id])
+      render json: @release, serializer: ReleaseArtistsSerializer
+       rescue ActiveRecord::RecordNotFound  
+      error = {
+        error: "Release not found",
+        status: 400
+      }
+      render :json => error, :status => :bad_request
+      return
+     end
+
   end
 
   def create
+    
     @release = Release.new(release_params)
     if params[:artists]
       params[:artists].each do |artist|
@@ -24,7 +37,10 @@ class Api::V1::ReleasesController < ApplicationController
       end
       render json: @release 
     else
-    render json: {errors: @release.errors.full_messages}
+      error = {errors: @release.errors.full_messages}    
+      render :json => error, :status => :bad_request
+      
+      
     end
 end
   
