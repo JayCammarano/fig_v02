@@ -1,6 +1,6 @@
 require "factory_bot"
-FactoryBot.define do
 
+FactoryBot.define do
   factory :release do
     artists {[build(:artist)]} 
     title {'Acid Rap'}
