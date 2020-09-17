@@ -18,19 +18,9 @@ class Api::V1::ReleasesController < ApplicationController
   end
 
   def create
-    
-    @release = Release.new(release_params)
-    if params[:artists]
-      params[:artists].each do |artist|
-        if artist === ""
-        else
-          name_hash = {name: artist}
-          new_artist = Artist.find_or_initialize_by(name_hash)
-          @release.artists << new_artist
-        end
-      end
-    end
-    
+    sanitized_params = Release.add_artists(release_params, params[:artists])
+    @release = Release.new(sanitized_params)
+
     if @release.save      
       @release.artists.each do |artist|
         artist.save 
@@ -39,8 +29,6 @@ class Api::V1::ReleasesController < ApplicationController
     else
       error = {errors: @release.errors.full_messages}    
       render :json => error, :status => :bad_request
-      
-      
     end
 end
   

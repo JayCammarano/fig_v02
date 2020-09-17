@@ -15,10 +15,7 @@ RSpec.describe Api::V1::ArtistsController, type: :controller do
 
     it "returns all the products in the database" do
       get :index
-
       returned_json = JSON.parse(response.body)
-      
-      binding.pry
       
       expect(returned_json[0]["id"]).to eq(artist1.id)
       expect(returned_json[0]["name"]).to eq(artist1.name)
