@@ -1,0 +1,27 @@
+require 'rails_helper'
+
+RSpec.describe RegistrationsController, type: :controller do
+  describe 'POST#create' do
+    context "when a post is made with correct params" do
+      it "adds a new user to the database" do
+        previous_count = User.count
+        post :create, params: {"user"=>{"email"=>"test@gmail.com", "password"=>"testtest", "password_confirmation"=>"testtest"}}
+        new_count = User.count
+
+        expect(response.status).to eq 200
+        expect(response.content_type).to eq "application/json"
+        expect(new_count).to eq(previous_count + 1)
+      end
+
+      it "returns the user object" do
+        post :create, params: {"user"=>{"email"=>"test@gmail.com", "password"=>"testtest", "password_confirmation"=>"testtest"}}
+        returned_json = JSON.parse(response.body)      
+          
+        expect(response.status).to eq 200
+        expect(response.content_type).to eq "application/json"
+        expect(returned_json["user"]["email"]).to eq("test@gmail.com")
+      end
+    end
+  end
+
+end

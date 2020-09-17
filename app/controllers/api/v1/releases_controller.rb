@@ -23,7 +23,7 @@ class Api::V1::ReleasesController < ApplicationController
 
     if @release.save      
       @release.artists.each do |artist|
-        artist.save 
+        artist.save
       end
       render json: @release 
     else
