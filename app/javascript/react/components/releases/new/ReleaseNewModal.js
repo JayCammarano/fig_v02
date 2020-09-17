@@ -99,7 +99,6 @@ const ReleaseNewForm = (props) => {
           });
           n = n + 1;
         } else if (Object.keys(infoPiece)[0] === "year") {
-          debugger;
           setReleaseRecord({
             ...releaseRecord,
             [original_release_year]: infoPiece.year,
