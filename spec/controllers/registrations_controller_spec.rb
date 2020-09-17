@@ -27,23 +27,13 @@ RSpec.describe RegistrationsController, type: :controller do
         previous_count = User.count
         post :create, params: {"user"=>{bad_user: "bad_user"}}
         new_count = User.count
-        
+
         returned_json = JSON.parse(response.body)
 
         expect(response.status).to eq 400
         expect(new_count).to eq(previous_count)
         expect(returned_json["error"]).to eq(["Password can't be blank", "Email can't be blank"])
       end
-
-    #   it "returns the user object" do
-    #     post :create, params: {"user"=>{"email"=>"test@gmail.com", "password"=>"testtest", "password_confirmation"=>"testtest"}}
-    #     returned_json = JSON.parse(response.body)      
-
-    #     expect(response.status).to eq 200
-    #     expect(response.content_type).to eq "application/json"
-    #     expect(returned_json["user"]["email"]).to eq("test@gmail.com")
-    #   end
-    end
 
   end
 end
