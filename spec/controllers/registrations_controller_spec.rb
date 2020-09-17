@@ -34,6 +34,6 @@ RSpec.describe RegistrationsController, type: :controller do
         expect(new_count).to eq(previous_count)
         expect(returned_json["error"]).to eq(["Password can't be blank", "Email can't be blank"])
       end
-
+    end
   end
 end
