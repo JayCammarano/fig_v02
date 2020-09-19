@@ -13,7 +13,7 @@
  *= require_tree .
  *= require_self
  */
-@import "bulma";
 @import "1customUtilities.scss";
+@import "mystyles.css";
 @import "3bulmaswatch.min.scss";
 @import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader

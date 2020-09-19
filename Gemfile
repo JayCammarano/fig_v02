@@ -51,7 +51,6 @@ gem 'database_cleaner', group: [:development, :test]
 gem 'valid_attribute', group: [:development, :test]
 gem 'shoulda-matchers', group: [:development, :test], require: false
 gem 'webpacker', '~> 3.3'
-gem "bulma-rails", "~> 0.9.0"
 gem 'bcrypt', '~> 3.1', '>= 3.1.15'
 gem 'rack-cors', '~> 1.1', '>= 1.1.1'
 gem 'active_model_serializers', '~> 0.10.0' 

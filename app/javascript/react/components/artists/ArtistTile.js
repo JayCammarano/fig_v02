@@ -10,7 +10,6 @@ const ArtistTile = (props) => {
   } else {
     image = props.image;
   }
-  debugger;
   return (
     <div className="card has-background-light">
       <figure className="image is-48by48">
