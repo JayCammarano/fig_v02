@@ -19,9 +19,6 @@ class SessionsController < ApplicationController
   end
 
   def logged_in  
-    
-    binding.pry
-      
     if @current_user
       render json: {
         logged_in: true,
