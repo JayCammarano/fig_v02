@@ -16,7 +16,7 @@ export class Login extends Component {
     const { email, password } = this.state;
     axios
       .post(
-        "http://localhost:3000/sessions",
+        "https://fig-music.herokuapp.com//sessions",
         {
           user: {
             email: email,
