@@ -58,12 +58,18 @@ class Api::V1::ArtistsController < ApplicationController
      end
   end
 
-  def create
+  def create    
     new_artist = Artist.new(artist_params)
-    image = Image.create(attachment: params[:image])             
+    
+    binding.pry
+    
+    image = Image.create(attachment: params[:image])    
+    
+    binding.pry
+             
     new_artist.images << image
 
-    Artist.alt_name_creator(new_artist, params[:altName])
+    Artist.alt_name_creator(new_artist, params[:alt_name])
         
     if new_artist.save
       render json: new_artist
@@ -74,7 +80,7 @@ class Api::V1::ArtistsController < ApplicationController
 
   private
   def artist_params
-    params.permit(:name, :description, :altName, :image)
+    params.permit(:name, :description, :image, :altNames)
   end
   def release_params
     params.permit(:title, :description, :original_release_year, :release_type, :embed_url, :artists)
