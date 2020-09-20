@@ -29,6 +29,7 @@ export const ReleasesTab = (props) => {
                 setToggleNewRelease={props.setToggleNewRelease}
                 toggleNewRelease={props.toggleNewRelease}
                 name={props.name}
+                image={props.image}
               />
             </div>
             {releaseTiles}
