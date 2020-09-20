@@ -8,7 +8,7 @@ class ImageUploader < CarrierWave::Uploader::Base
     storage :file
   else
     storage :fog
-  include CarrierWave::MiniMagick
+  end
 
   process :resize_to_fill(200, 200, gravity = 'Center')
 
