@@ -29,7 +29,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   process scale: [200, 200]
   
   def scale(width, height)
-      process resize_to_fill: [width, height]
+      process! resize_to_fill: [width, height]
   end
 
   # Create different versions of your uploaded files:
