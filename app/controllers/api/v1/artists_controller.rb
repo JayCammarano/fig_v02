@@ -59,14 +59,8 @@ class Api::V1::ArtistsController < ApplicationController
   end
 
   def create    
-    new_artist = Artist.new(artist_params)
-    
-    binding.pry
-    
+    new_artist = Artist.new(artist_params)    
     image = Image.create(attachment: params[:image])    
-    
-    binding.pry
-             
     new_artist.images << image
 
     Artist.alt_name_creator(new_artist, params[:alt_name])
