@@ -1,5 +1,5 @@
-# README
-With my breakable toy, codenamed Fig, I brought together the extensive music metadata of Discogs and Last.fm with the streaming aspects of SoundCloud.
+# Fig
+With my breakable toy I brought together the extensive music metadata of Discogs and Last.fm with the streaming aspects of SoundCloud.
 
 I focus on user-curated selections rather than algorithms, which leaves you listening to the same things over and over. This approach creates an even playing field for artists who would otherwise get pushed to the margins.
 
