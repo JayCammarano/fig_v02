@@ -21,7 +21,7 @@ export class App extends Component {
   }
   checkLoginStatus() {
     axios
-      .get("http://localhost:3000/logged_in", { withCredentials: true })
+      .get("https://fig-music.herokuapp.com/logged_in", { withCredentials: true })
       .then((response) => {
         if (
           response.data.logged_in &&

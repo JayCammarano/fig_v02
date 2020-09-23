@@ -1,6 +1,5 @@
 import React from "react";
 import ReleaseTile from "../../releases/ReleaseTile";
-import { Link } from "react-router-dom";
 import AddReleaseTile from "../../releases/new/AddReleaseTile";
 
 export const ReleasesTab = (props) => {
@@ -29,6 +28,7 @@ export const ReleasesTab = (props) => {
                 setToggleNewRelease={props.setToggleNewRelease}
                 toggleNewRelease={props.toggleNewRelease}
                 name={props.name}
+                image={props.image}
               />
             </div>
             {releaseTiles}

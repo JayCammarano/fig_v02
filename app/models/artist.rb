@@ -6,17 +6,15 @@ class Artist < ApplicationRecord
   has_many :tags, through: :releases
   has_many :images, as: :imageable
 
-  def imageCaller    
+  def imageCaller        
     if self.images.first
       image_url = self.images.first.attachment.url
     else
-      return errors = {error: "No artist image"}
-    end
-
+      return errors = {error: "No artist image"}    end
   end
 
   def self.alt_name_creator(artist_object, alt_name_array)
-    if alt_name_array      
+    if alt_name_array
       alt_name_array.each do |alt_name|
         name_hash = {name: alt_name}
         new_alt_name = AltName.new(name_hash)

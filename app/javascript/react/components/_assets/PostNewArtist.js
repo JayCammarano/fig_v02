@@ -3,8 +3,9 @@ const postNewArtist = (form) => {
   body.append("name", form.name);
   body.append("description", form.description);
   form.altName.forEach((altName) => {
-    body.append("alt_name", altName);
+    body.append("alt_name[]", altName);
   });
+
   body.append("image", form.image[0]);
   
   fetch(`/api/v1/artists`, {

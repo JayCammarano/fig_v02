@@ -3,7 +3,7 @@ import axios from "axios"
 const SignOut = (props) => {
   const handleLogoutClick = () => {
     axios
-      .delete("http://localhost:3000/logout", { withCredentials: true })
+      .delete("https://fig-music.herokuapp.com/logout", { withCredentials: true })
       .then((response) => {
         this.props.handleLogout();
       })

@@ -36,12 +36,6 @@ const ReleaseDescription = (props) => {
             </a>
             <a
               className="card-footer-item has-text-dark"
-              onClick={() => reviewSwitcher("metacritic")}
-            >
-              Metacritic
-            </a>
-            <a
-              className="card-footer-item has-text-dark"
               onClick={() => reviewSwitcher("discogs")}
             >
               Discogs

@@ -57,3 +57,5 @@ gem 'active_model_serializers', '~> 0.10.0'
 gem 'httparty'
 gem "discogs-wrapper"
 gem "carrierwave"
+gem "fog-aws"
+gem "mini_magick"
