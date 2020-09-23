@@ -8,7 +8,7 @@ import DiscogsAutofill from "../../_assets/DiscogsAutofill";
 const ReleaseNewForm = (props) => {
   let artist = props.artist;
   let artistID = props.artistID;
-  const starterArray = [{ title: "" }, { artist: "" }];
+  const starterArray = [{ title: "" }, { artist: "" }, {year: ""}];
   const [autoFill, setAutofill] = useState(starterArray);
   const [releaseRecord, setReleaseRecord] = useState({
     title: "",
@@ -20,12 +20,8 @@ const ReleaseNewForm = (props) => {
   });
   useEffect(() => {
     setReleaseRecord({
-      title: "",
-      description: "",
+      ...releaseRecord,
       artists: [artist],
-      release_type: "Album",
-      original_release_year: 2020,
-      embed_url: "",
     });
   }, [artist]);
 
@@ -87,7 +83,7 @@ const ReleaseNewForm = (props) => {
         if (Object.keys(infoPiece)[0] == "title") {
           setReleaseRecord({
             ...releaseRecord,
-            [title]: infoPiece.title
+            [title]: infoPiece.title,
           });
         } else if (Object.keys(infoPiece)[0] === "artist") {
           let artists = releaseRecord.artists;
@@ -103,6 +99,7 @@ const ReleaseNewForm = (props) => {
             ...releaseRecord,
             [original_release_year]: infoPiece.year,
           });
+          debugger;
         }
       });
     }
