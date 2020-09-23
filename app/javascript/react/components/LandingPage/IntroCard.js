@@ -32,9 +32,9 @@ const IntroCard = () => {
         </p>
         <p>
           I hope for a fulfilling experience for the user, where passion for
-          information and learning meets a passion for community and music.""{" "}
+          information and learning meets a passion for community and music.
           <br />
-        </p>{" "}
+        </p>
       </div>
     </div>
   );
