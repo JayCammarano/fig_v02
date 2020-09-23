@@ -11,6 +11,8 @@ const ArtistNewTile = (props) => {
     image: [""]
   });
 
+const [shouldRedirect, setShouldRedirect] = useState(false)
+
   const handleInputChange = (event) => {
     setnewArtistRecord({
       ...newartistRecord,
@@ -19,8 +21,11 @@ const ArtistNewTile = (props) => {
   };
   const submitArtist = () => {
     event.preventDefault();
-    postNewArtist(newartistRecord);
+    postNewArtist(newartistRecord, setShouldRedirect);
   };
+
+
+
   const addNewArtistToggle = () => {
     props.setToggleNewArtist("");
   };
