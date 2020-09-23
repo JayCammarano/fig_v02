@@ -15,7 +15,8 @@
 
 # Ignore uploaded files in test/development
 /public/uploads
-
+/spec/fixtures/images
+/spec/support/uploads
 /node_modules
 /yarn-error.log
 

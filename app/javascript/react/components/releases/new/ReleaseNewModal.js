@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Redirect } from "react-router-dom";
 import _ from "lodash";
 import MultipleArtistFields from "./MultipleArtistFields";
 import PostNewRelease from "../../_assets/PostNewRelease";
 import DiscogsAutofill from "../../_assets/DiscogsAutofill";
+import ImageUploader from "./ImageUploader";
 
 const ReleaseNewForm = (props) => {
   let artist = props.artist;
   let artistID = props.artistID;
-  const starterArray = [{ title: "" }, { artist: "" }];
+  const starterArray = [{ title: "" }, { artist: "" }, {year: ""}];
   const [autoFill, setAutofill] = useState(starterArray);
   const [releaseRecord, setReleaseRecord] = useState({
     title: "",
@@ -17,19 +17,15 @@ const ReleaseNewForm = (props) => {
     release_type: "Album",
     original_release_year: 2020,
     embed_url: "",
+    image: [""]
   });
   useEffect(() => {
     setReleaseRecord({
-      title: "",
-      description: "",
+      ...releaseRecord,
       artists: [artist],
-      release_type: "Album",
-      original_release_year: 2020,
-      embed_url: "",
     });
   }, [artist]);
 
-  const [shouldRedirect, setShouldRedirect] = useState(false);
   const [errors, setErrors] = useState("");
   const validForSubmission = () => {
     let nameError = "Title can't be blank.";
@@ -56,12 +52,9 @@ const ReleaseNewForm = (props) => {
 
   const addNewRelease = (release) => {
     event.preventDefault();
-    PostNewRelease(release, setShouldRedirect, artistID);
+    PostNewRelease(release, props.setShouldRedirect, artistID, props.setResponse);
   };
 
-  if (shouldRedirect) {
-    return <Redirect to={`/artists/${artistID}/`} />;
-  }
 
   const handleArtistChange = (event) => {
     let artists = releaseRecord.artists;
@@ -87,7 +80,7 @@ const ReleaseNewForm = (props) => {
         if (Object.keys(infoPiece)[0] == "title") {
           setReleaseRecord({
             ...releaseRecord,
-            [title]: infoPiece.title
+            title: infoPiece["title"],
           });
         } else if (Object.keys(infoPiece)[0] === "artist") {
           let artists = releaseRecord.artists;
@@ -101,7 +94,7 @@ const ReleaseNewForm = (props) => {
         } else if (Object.keys(infoPiece)[0] === "year") {
           setReleaseRecord({
             ...releaseRecord,
-            [original_release_year]: infoPiece.year,
+            original_release_year: infoPiece["year"],
           });
         }
       });
@@ -122,7 +115,7 @@ const ReleaseNewForm = (props) => {
               ></button>
             </header>
             <form onSubmit={onSubmitHandeler}>
-              <section className="modal-card-body">
+              <section className="modal-card-body overflowLG">
                 <div className="field">
                   <label htmlFor="name">
                     <div className="control">
@@ -202,11 +195,11 @@ const ReleaseNewForm = (props) => {
                     </div>
                   </label>
                 </div>
-
                 <MultipleArtistFields
                   handleArtistChange={handleArtistChange}
                   releaseRecord={releaseRecord}
                 />
+                <ImageUploader releaseRecord={releaseRecord} setReleaseRecord={setReleaseRecord}/>
                 <br />
                 <button className="button is-success" type="submit">
                   Submit

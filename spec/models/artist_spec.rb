@@ -23,7 +23,7 @@ RSpec.describe Artist, type: :model do
         artist = release_without_image.artists.first
         releases = artist.releaseImageCaller
         
-        expect(releases[1][:image]).to eq({error: "no artist image"})
+        expect(releases[1][:image]).to eq({error: "no release image"})
         expect(releases[1][:id]).to eq(artist.releases.last.id)
         expect(releases[1][:title]).to eq(artist.releases.last.title)
       end

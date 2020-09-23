@@ -23,7 +23,6 @@ const ReleaseDescription = (props) => {
 
   return (
     <section className="column m-lg">
-      <div className="column">
         <div className="card has-background-light">
           <h4 className="card-header-title has-text-dark">{props.name}</h4>
           {reviewData}
@@ -42,7 +41,6 @@ const ReleaseDescription = (props) => {
             </a>
           </p>
         </div>
-      </div>
     </section>
   );
 };

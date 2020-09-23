@@ -13,7 +13,7 @@ class Api::V1::ArtistsController < ApplicationController
       artistID = search.results[0]["id"]
       releases = wrapper.get_artist_releases(artistID)
       releases.releases.each do |release|
-        if release.title.include?(release_params["title"])
+        if release.title.downcase.include?(release_params["title"].downcase)
           albumBlob = wrapper.get_master_release(release.id)
           titleBlob = {title: release.title}
           yearBlob = {year: release.year}

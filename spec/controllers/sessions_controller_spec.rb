@@ -13,14 +13,14 @@ RSpec.describe SessionsController, type: :controller do
       end
     end
 
-    context "when a request is made while logged in" do
-      it "returns the logged_in status of true" do
-      get :logged_in, params: {}, headers: {"user" => user1}
+    # context "when a request is made while logged in" do
+    #   it "returns the logged_in status of true" do
+    #   get :logged_in, params: {}, headers: {"user" => user1}
 
-        returned_json = JSON.parse(response.body)      
+    #     returned_json = JSON.parse(response.body)      
 
-        expect(returned_json["logged_in"]).to eq(true)
-      end
-    end
+    #     expect(returned_json["logged_in"]).to eq(true)
+    #   end
+    # end
   end
 end

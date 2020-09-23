@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import ReleasesTab from "./ReleasesTab";
 import BioTab from "./BioTab";
 import ReleaseNewForm from "../../releases/new/ReleaseNewModal";
+import { Redirect } from "react-router-dom";
 
 const ArtistShowPageContainer = (props) => {
   let artistID = props.match.params.id;
@@ -27,9 +28,11 @@ const ArtistShowPageContainer = (props) => {
     ],
   };
   const [toggleNewRelease, setToggleNewRelease] = useState("");
-
+  const [response, setResponse] = useState({id: ""})
   const [getArtist, setArtist] = useState(defaultArtist);
   const [whichTab, setWhichTab] = useState({ id: "releases" });
+  const [shouldRedirect, setShouldRedirect] = useState(false);
+
   const changeTabs = (tab) => {
     setWhichTab({ id: tab });
   };
@@ -72,6 +75,10 @@ const ArtistShowPageContainer = (props) => {
       );
     }
   }
+  if (shouldRedirect === true && response.id != "") {
+    return <Redirect to={`/artists/${artistID}/releases/${response.id}`} />;
+  }
+
   return (
     <>
       <NavBar loggedInStatus={props.loggedInStatus} />
@@ -114,6 +121,9 @@ const ArtistShowPageContainer = (props) => {
         setToggleNewRelease={setToggleNewRelease}
         artist={getArtist.name}
         artistID={artistID}
+        shouldRedirect={shouldRedirect}
+        setShouldRedirect={setShouldRedirect}
+        setResponse={setResponse}
       />
     </>
   );

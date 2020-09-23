@@ -19,8 +19,22 @@ const IntroCard = () => {
           </div>
         </div>
       </div>
-      <div className="content center">
-        Here lies a paragraph or two about why fig is important. <br />
+      <div className="content p-md">
+        <p>
+          With Fig I brought together the extensive music metadata of Discogs
+          and Last.fm with the streaming aspects of SoundCloud.
+        </p>
+        <p>
+          I focus on user-curated selections rather than algorithms, which
+          leave you listening to the same things over and over. This approach
+          creates an even playing field for artists who would otherwise get
+          pushed to the margins.
+        </p>
+        <p>
+          I hope for a fulfilling experience for the user, where passion for
+          information and learning meets a passion for community and music.
+          <br />
+        </p>
       </div>
     </div>
   );
