@@ -1,4 +1,4 @@
-const PostNewRelease = (form, redirect, artistID) => {
+const PostNewRelease = (form, redirect, artistID, setResponse) => {
   let body = new FormData();
   body.append("title", form.title);
   body.append("release_type", form.release_type);
@@ -10,7 +10,7 @@ const PostNewRelease = (form, redirect, artistID) => {
   });
 
   body.append("image", form.image[0]);
-  
+
   fetch(`/api/v1/artists/${artistID}/releases`, {
     method: "POST",
     body: body,
@@ -25,11 +25,9 @@ const PostNewRelease = (form, redirect, artistID) => {
       }
     })
     .then((response) => response.json())
-    .then((body) => {
-      redirect(true);
-    })
+    .then((body) => setResponse(body))
+    .then(redirect(true))
     .catch((error) => console.error(`Error in fetch: ${error.message}`));
+};
 
-}
-
-export default PostNewRelease
+export default PostNewRelease;

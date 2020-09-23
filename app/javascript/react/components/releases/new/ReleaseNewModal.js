@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Redirect } from "react-router-dom";
 import _ from "lodash";
 import MultipleArtistFields from "./MultipleArtistFields";
 import PostNewRelease from "../../_assets/PostNewRelease";
@@ -27,7 +26,6 @@ const ReleaseNewForm = (props) => {
     });
   }, [artist]);
 
-  const [shouldRedirect, setShouldRedirect] = useState(false);
   const [errors, setErrors] = useState("");
   const validForSubmission = () => {
     let nameError = "Title can't be blank.";
@@ -54,12 +52,9 @@ const ReleaseNewForm = (props) => {
 
   const addNewRelease = (release) => {
     event.preventDefault();
-    PostNewRelease(release, setShouldRedirect, artistID);
+    PostNewRelease(release, props.setShouldRedirect, artistID, props.setResponse);
   };
 
-  if (shouldRedirect) {
-    return <Redirect to={`/artists/${artistID}/`} />;
-  }
 
   const handleArtistChange = (event) => {
     let artists = releaseRecord.artists;
