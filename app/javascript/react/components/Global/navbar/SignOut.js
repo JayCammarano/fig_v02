@@ -1,9 +1,11 @@
 import React from 'react'
 import axios from "axios"
+import axiosUrl from "../../_assets/axiosUrl"
+
 const SignOut = (props) => {
   const handleLogoutClick = () => {
     axios
-      .delete("https://fig-music.herokuapp.com/logout", { withCredentials: true })
+      .delete(`${axiosUrl}/logout`, { withCredentials: true })
       .then((response) => {
         this.props.handleLogout();
       })

@@ -4,6 +4,7 @@ import Login from "./Login";
 import axios from "axios";
 import NavBar from "../Global/navbar/NavBar";
 import IntroCard from "../LandingPage/IntroCard";
+import axiosUrl from "../_assets/axiosUrl"
 
 export class Home extends Component {
   constructor(props) {
@@ -48,7 +49,7 @@ export class Home extends Component {
   }
   handleLogoutClick() {
     axios
-      .delete("https://fig-music.herokuapp.com//logout", { withCredentials: true })
+      .delete(`${axiosUrl}/logout`, { withCredentials: true })
       .then((response) => {
         this.props.handleLogout();
       })

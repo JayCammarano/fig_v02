@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import axiosUrl from "../_assets/axiosUrl"
 
 export class Login extends Component {
   constructor(props) {
@@ -16,7 +17,7 @@ export class Login extends Component {
     const { email, password } = this.state;
     axios
       .post(
-        "https://fig-music.herokuapp.com//sessions",
+        `${axiosUrl}/sessions`,
         {
           user: {
             email: email,
