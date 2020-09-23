@@ -19,8 +19,9 @@ class Api::V1::ReleasesController < ApplicationController
 
   def create
     sanitized_params = Release.add_artists(release_params, params[:artists])
+    image = Image.create(attachment: params[:image])
     @release = Release.new(sanitized_params)
-
+    @release.images << image
     if @release.save      
       @release.artists.each do |artist|
         artist.save

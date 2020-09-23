@@ -4,6 +4,7 @@ import _ from "lodash";
 import MultipleArtistFields from "./MultipleArtistFields";
 import PostNewRelease from "../../_assets/PostNewRelease";
 import DiscogsAutofill from "../../_assets/DiscogsAutofill";
+import ImageUploader from "./ImageUploader";
 
 const ReleaseNewForm = (props) => {
   let artist = props.artist;
@@ -17,6 +18,7 @@ const ReleaseNewForm = (props) => {
     release_type: "Album",
     original_release_year: 2020,
     embed_url: "",
+    image: [""]
   });
   useEffect(() => {
     setReleaseRecord({
@@ -83,7 +85,7 @@ const ReleaseNewForm = (props) => {
         if (Object.keys(infoPiece)[0] == "title") {
           setReleaseRecord({
             ...releaseRecord,
-            [title]: infoPiece.title,
+            title: infoPiece["title"],
           });
         } else if (Object.keys(infoPiece)[0] === "artist") {
           let artists = releaseRecord.artists;
@@ -97,9 +99,8 @@ const ReleaseNewForm = (props) => {
         } else if (Object.keys(infoPiece)[0] === "year") {
           setReleaseRecord({
             ...releaseRecord,
-            [original_release_year]: infoPiece.year,
+            original_release_year: infoPiece["year"],
           });
-          debugger;
         }
       });
     }
@@ -119,7 +120,7 @@ const ReleaseNewForm = (props) => {
               ></button>
             </header>
             <form onSubmit={onSubmitHandeler}>
-              <section className="modal-card-body">
+              <section className="modal-card-body overflowLG">
                 <div className="field">
                   <label htmlFor="name">
                     <div className="control">
@@ -199,11 +200,11 @@ const ReleaseNewForm = (props) => {
                     </div>
                   </label>
                 </div>
-
                 <MultipleArtistFields
                   handleArtistChange={handleArtistChange}
                   releaseRecord={releaseRecord}
                 />
+                <ImageUploader releaseRecord={releaseRecord} setReleaseRecord={setReleaseRecord}/>
                 <br />
                 <button className="button is-success" type="submit">
                   Submit

@@ -6,7 +6,7 @@ const ImageUploader = (props) => {
   const handleFileUpload = (acceptedFiles) => {
     props.setReleaseRecord({
       ...props.releaseRecord,
-      image: acceptedFiles[0]
+      image: acceptedFiles
     })
   }
   return (

@@ -1,12 +1,19 @@
-const PostNewRelease = (body, redirect, artistID) => {
+const PostNewRelease = (form, redirect, artistID) => {
+  let body = new FormData();
+  body.append("title", form.title);
+  body.append("release_type", form.release_type);
+  body.append("original_release_year", form.year);
+  body.append("embed_url", form.embed_url);
+  body.append("description", form.description);
+  form.artists.forEach((artist) => {
+    body.append("artists[]", artist);
+  });
+
+  body.append("image", form.image[0]);
+  
   fetch(`/api/v1/artists/${artistID}/releases`, {
     method: "POST",
-    body: JSON.stringify(body),
-    headers: {
-      'Content-Type': 'application/json',
-    },
-
-    credentials: "same-origin",
+    body: body,
   })
     .then((response) => {
       if (response.ok) {

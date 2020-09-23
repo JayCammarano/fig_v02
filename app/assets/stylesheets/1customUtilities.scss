@@ -12,10 +12,15 @@
 .overflow {
   height: 200px;
   overflow-y: scroll;
-  overflow-x:hidden;
+  overflow-x: hidden;
 }
 .overflowMD {
   height: 400px;
   overflow-y: scroll;
-  overflow-x:hidden;
+  overflow-x: hidden;
+}
+.overflowLG {
+  height: 500px;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
