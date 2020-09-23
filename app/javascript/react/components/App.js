@@ -8,6 +8,7 @@ import axios from "axios";
 import AllArtistsContainer from "./artists/AllArtists/AllArtistsContainer";
 import ArtistShowPageContainer from "./artists/show/ArtistShowPage";
 import ReleaseShowContainer from "./releases/show/ReleaseShowContainer";
+import axiosUrl from "./_assets/axiosUrl"
 
 export class App extends Component {
   constructor() {
@@ -21,7 +22,7 @@ export class App extends Component {
   }
   checkLoginStatus() {
     axios
-      .get("https://fig-music.herokuapp.com/logged_in", { withCredentials: true })
+      .get(`${axiosUrl}/logged_in`, { withCredentials: true })
       .then((response) => {
         if (
           response.data.logged_in &&
