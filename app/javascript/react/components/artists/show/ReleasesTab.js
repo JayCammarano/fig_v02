@@ -21,7 +21,7 @@ export const ReleasesTab = (props) => {
   });
 
   return (
-          <div className="columns is-multiline p-l-lg">
+          <div className="columns is-multiline p-lg">
             <div className="column is-one-third m-t-lg">
               <AddReleaseTile
                 artistID={props.artistID}
