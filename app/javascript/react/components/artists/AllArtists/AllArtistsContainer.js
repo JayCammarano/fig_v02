@@ -49,7 +49,7 @@ const AllArtistsContainer = (props) => {
         redirectSetter={setShouldRedirect}
         showModal={toggleNewArtist}
         showModalSetter={setToggleNewArtist}
-        response={setPostResponse}
+        setResponse={setPostResponse}
       />
     </div>
   );

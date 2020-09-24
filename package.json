@@ -20,6 +20,8 @@
     "axios": "^0.20.0",
     "babel-loader": "^8.0.6",
     "bulma": "^0.9.0",
+    "fetch-ponyfill": "^6.1.1",
+    "jasmine-enzyme": "^7.1.2",
     "node-sass": "^4.14.1",
     "prop-types": "~15.6.0",
     "react": "~16.8.0",
@@ -34,7 +36,7 @@
     "babel-jest": "^24.9.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.5",
-    "fetch-mock": "~5.13.1",
+    "fetch-mock": "^9.10.7",
     "jest": "^26.4.2",
     "webpack-cli": "^2.0.10",
     "webpack-dev-server": "^2.11.1"
