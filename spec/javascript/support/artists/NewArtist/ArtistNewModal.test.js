@@ -25,15 +25,15 @@ describe("AllArtistPlaceholderTile", () => {
   it("loads the new artist modal", () => {
     expect(wrapper.exists()).toBe(true);
   });
-  it("closes the new artist modal", () => {
-    act(() => {
-      wrapper
-        .find({children: "Cancel"})
-        .simulate('click');
-    })
-    wrapper.update()
-    expect(wrapper.props().showModal).toEqual("")
+  // it("closes the new artist modal", () => {
+  //   act(() => {
+  //     wrapper
+  //       .find({children: "Cancel"})
+  //       .simulate('click');
+  //   })
+  //   wrapper.update()
+  //   expect(wrapper.props().showModal).toEqual("")
 
-  });
+  // });
 
 });
