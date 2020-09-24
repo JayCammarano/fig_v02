@@ -3,7 +3,7 @@ import MultiFieldContainer from "./MultiFieldContainer";
 import postNewArtist from "../../_assets/PostNewArtist";
 import ImageUploader from "./ImageUploader"
 
-const ArtistNewTile = ({redirectSetter, showModal, showModalSetter, response}) => {
+const ArtistNewModal = ({redirectSetter, showModal, showModalSetter, response}) => {
   const [newartistRecord, setnewArtistRecord] = useState({
     name: "",
     description: "",
@@ -103,4 +103,4 @@ const ArtistNewTile = ({redirectSetter, showModal, showModalSetter, response}) =
   );
 };
 
-export default ArtistNewTile;
+export default ArtistNewModal;

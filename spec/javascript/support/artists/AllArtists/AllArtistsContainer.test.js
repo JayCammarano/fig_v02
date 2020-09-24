@@ -2,10 +2,12 @@ import React from "react";
 import Enzyme, { mount, shallow } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import fetchMock from "fetch-mock";
+import { act } from "react-dom/test-utils"
 import { BrowserRouter } from "react-router-dom";
 
 import AllArtistsContainer from "../../../../../app/javascript/react/components/artists/AllArtists/AllArtistsContainer";
 import ArtistPlaceHolderTile from "../../../../../app/javascript/react/components/artists/AllArtists/ArtistPlaceholderTile";
+import ArtistNewModal from "../../../../../app/javascript/react/components/artists/NewArtist/ArtistNewModal";
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -39,7 +41,6 @@ describe("AllArtistsContainer", () => {
       </BrowserRouter>
     );
   });
-
   afterEach(fetchMock.restore);
 
   it("loads the container", () => {
@@ -49,5 +50,16 @@ describe("AllArtistsContainer", () => {
   it("displays the artist tiles", () => {
     expect(wrapper.find({children: artists[0].name})).toExist
     expect(wrapper.find({children: artists[1].name})).toExist
+  });
+
+  it("displays the new artist modal", () => {
+    act(() => {
+      wrapper
+        .find(ArtistPlaceHolderTile)
+        .simulate('click');
+    })
+    wrapper.update()
+    expect(wrapper.find(ArtistNewModal).props().showModal).toEqual("is-active")
+
   });
 });
