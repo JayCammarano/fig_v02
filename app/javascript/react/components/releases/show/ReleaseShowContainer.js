@@ -87,14 +87,6 @@ const ReleaseShowContainer = (props) => {
             >
               <a>credits</a>
             </li>
-
-            <li
-              id="edit"
-              className={editClass}
-              onClick={() => changeTabs("edit")}
-            >
-              <a>edit release </a>
-            </li>
           </ul>
         </div>
       </section>
