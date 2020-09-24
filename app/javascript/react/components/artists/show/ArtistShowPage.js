@@ -108,7 +108,7 @@ const ArtistShowPageContainer = (props) => {
               >
                 <a>Releases</a>
               </li>
-=            </ul>
+            </ul>
           </div>
         </div>
       </section>
