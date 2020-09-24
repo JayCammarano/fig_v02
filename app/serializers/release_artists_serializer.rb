@@ -51,9 +51,12 @@ class ReleaseArtistsSerializer < ActiveModel::Serializer
   end
 
   def relatedArtists
+    credits = []
     object.artists.each do |artist|
-        artist.name
+        artistObject = {name: artist.name, image: artist.images.first, role: artist.role, id: artist.id}
+        credits << artistObject
     end
+    credits
   end
   def relatedLabels
     object.labels.each do |label|
