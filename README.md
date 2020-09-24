@@ -1,5 +1,5 @@
 # Fig
-[![Codeship Status for JayCammarano/fig_v02](https://app.codeship.com/projects/c3546400-e0b0-0138-a44e-12afd896c336/status?branch=master)](https://app.codeship.com/projects/409934)
+[![Codeship Status for JayCammarano/fig_v02](https://app.codeship.com/projects/c3546400-e0b0-0138-a44e-12afd896c336/status?branch=master)](https://app.codeship.com/projects/409934) [![codecov](https://codecov.io/gh/JayCammarano/fig_v02/branch/master/graph/badge.svg)](https://codecov.io/gh/JayCammarano/fig_v02)
 
 With Fig I brought together the extensive music metadata of Discogs and Last.fm with the streaming aspects of SoundCloud.
 
