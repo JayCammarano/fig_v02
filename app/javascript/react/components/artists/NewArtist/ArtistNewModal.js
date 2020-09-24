@@ -3,7 +3,7 @@ import MultiFieldContainer from "./MultiFieldContainer";
 import postNewArtist from "../../_assets/PostNewArtist";
 import ImageUploader from "./ImageUploader"
 
-const ArtistNewTile = (props) => {
+const ArtistNewTile = ({redirectSetter, showModal, showModalSetter, response}) => {
   const [newartistRecord, setnewArtistRecord] = useState({
     name: "",
     description: "",
@@ -19,10 +19,10 @@ const ArtistNewTile = (props) => {
   };
   const submitArtist = () => {
     event.preventDefault();
-    postNewArtist(newartistRecord, props.setShouldRedirect, props.setResponse);
+    postNewArtist(newartistRecord, redirectSetter, response);
   };
   const addNewArtistToggle = () => {
-    props.setToggleNewArtist("");
+    showModalSetter("");
   };
   const handleAltNameChange = (event) => {
     let altName = newartistRecord.altName;
@@ -35,7 +35,7 @@ const ArtistNewTile = (props) => {
   };
 
   return (
-    <div className={`modal ${props.toggleNewArtist}`}>
+    <div className={`modal ${showModal}`}>
       <div className="modal-background"></div>
       <div className="modal-card">
         <header className="modal-card-head">
@@ -90,10 +90,10 @@ const ArtistNewTile = (props) => {
               newartistRecord={newartistRecord}
             />
 
-            <button className="button is-success" type="submit">
+            <button id="submit" className="button is-success" type="submit">
               Submit
             </button>
-            <button className="button is-warning" onClick={addNewArtistToggle}>
+            <button id="cancel" className="button is-warning" onClick={addNewArtistToggle}>
               Cancel
             </button>
           </section>
