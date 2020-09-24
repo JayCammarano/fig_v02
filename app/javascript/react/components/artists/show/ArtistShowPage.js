@@ -108,10 +108,7 @@ const ArtistShowPageContainer = (props) => {
               >
                 <a>Releases</a>
               </li>
-              <Link className="" to={`/artists/${artistID}/update`}>
-                Edit Info
-              </Link>
-            </ul>
+=            </ul>
           </div>
         </div>
       </section>

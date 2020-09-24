@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const ArtistTile = (props) => {
-  const artistID = props.id;
   let image;
   if (props.image === null) {
     image =
@@ -15,7 +14,9 @@ const ArtistTile = (props) => {
       <figure className="image is-48by48">
         <img src={image} className="card-image" alt="Artist Image" />
       </figure>
-      <h4 className="card-header-title has-text-dark">{props.name}</h4>
+      <h4 className="card-header-title has-text-dark overflowHCard">
+        {props.name}
+      </h4>
     </div>
   );
 };
