@@ -1,5 +1,5 @@
 const axiosUrl = () => {
-  "localhost:3000"
+  "fig-music.heroku.com"
 }
 
 export default axiosUrl
