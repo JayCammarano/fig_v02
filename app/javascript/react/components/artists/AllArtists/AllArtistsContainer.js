@@ -43,8 +43,7 @@ const AllArtistsContainer = (props) => {
       <div className="columns is-multiline p-l-lg">
         <div className="is-one-fifth m-md">
           <ArtistPlaceholderTile
-            toggleNewArtist={toggleNewArtist}
-            setToggleNewArtist={setToggleNewArtist}
+            launchModal={setToggleNewArtist}
           />
         </div>
         {artistTiles}

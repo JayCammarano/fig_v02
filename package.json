@@ -43,6 +43,8 @@
     "start": "./bin/webpack-dev-server",
     "test": "node_modules/.bin/jest",
     "test:dev": "node_modules/.bin/jest --notify --watch",
+    "test:watch": "node_modules/.bin/jest --watchAll --verbose",
+    "test:coverage": "node_modules/.bin/jest --verbose --coverage",
     "css-build": "node-sass --omit-source-map-url app/assets/stylesheets/mystyles.scss app/assets/stylesheets/mystyles.css",
     "css-watch": "npm run css-build -- --watch",
     "css-start": "npm run css-watch"
