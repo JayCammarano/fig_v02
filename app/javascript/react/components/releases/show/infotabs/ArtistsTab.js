@@ -12,7 +12,7 @@ const ArtistsTab = (props) => {
   const artistListingArray = props.artists.map((artist) => {
     let image = null
     if(artist.image !== null){
-      image = artist.image.attachment.url
+      image = artist.image
     }
     return (
       <div
