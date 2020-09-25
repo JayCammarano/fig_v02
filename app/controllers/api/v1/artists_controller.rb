@@ -1,5 +1,7 @@
 class Api::V1::ArtistsController < ApplicationController
   require "discogs"
+  include CurrentUserConcern
+
 
   def index    
     render json: Artist.all
@@ -72,6 +74,25 @@ class Api::V1::ArtistsController < ApplicationController
     end
   end
 
+  def destroy
+    if @current_user.role === "admin"
+      @artist = Artist.find(params[:id])
+      if @artist.destroy
+        flash[:success] = 'Artist was successfully deleted.'
+        redirect_to artists_url
+      else
+        flash[:error] = 'Something went wrong'
+        redirect_to artists_url
+      end
+    else      
+      error = {
+      error: "Insufficient privileges to complete the operation. User must be admin",
+      status: 400
+    }
+    render :json => error, :status => :bad_request
+    end
+  end
+  
   private
   def artist_params
     params.permit(:name, :description, :image, :altNames)
