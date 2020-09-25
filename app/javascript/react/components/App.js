@@ -22,7 +22,7 @@ export class App extends Component {
   }
   checkLoginStatus() {
     axios
-      .get(`${axiosUrl}/logged_in`, { withCredentials: true })
+      .get(`/logged_in`, { withCredentials: true })
       .then((response) => {
         if (
           response.data.logged_in &&

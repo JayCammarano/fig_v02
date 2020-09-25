@@ -17,11 +17,12 @@ export class Login extends Component {
     const { email, password } = this.state;
     axios
       .post(
-        `${axiosUrl}/sessions`,
+        `/sessions`,
         {
           user: {
             email: email,
             password: password,
+            username: username,
           },
         },
         { withCredentials: true }
@@ -59,7 +60,6 @@ export class Login extends Component {
             </div>
           </div>
           <div className="content">
-
           <form onSubmit={this.handleSubmit}>
             <div className="center m-md">
               <input
