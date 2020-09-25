@@ -25,6 +25,7 @@ const AllArtistsContainer = (props) => {
           name={artist.name}
           description={artist.description}
           image={artist.imageCaller}
+          role={props.role}
         />
       </Link>
     );
@@ -33,7 +34,7 @@ const AllArtistsContainer = (props) => {
   if (postResponse.id !== "") {
     return <Redirect to={`/artists/${postResponse.id}`} />;
   }
-
+  
   return (
     <div>
       <NavBar loggedInStatus={props.loggedInStatus} />

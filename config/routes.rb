@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   resources :admin, only: [:index]
   namespace :api do
     namespace :v1 do
-      resources :artists, only: [:index, :create, :new, :show, :update, :discogs] do
+      resources :artists, only: [:index, :create, :new, :show, :update, :destroy, :discogs] do
         post 'discogs'
         resources :releases, only: [:show, :create, :new, :update]
       end
