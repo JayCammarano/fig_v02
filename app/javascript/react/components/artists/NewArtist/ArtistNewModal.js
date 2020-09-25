@@ -4,7 +4,6 @@ import postNewArtist from "../../_assets/PostNewArtist";
 import ImageUploader from "./ImageUploader";
 
 const ArtistNewModal = ({
-  redirectSetter,
   showModal,
   showModalSetter,
   setResponse,
@@ -24,7 +23,7 @@ const ArtistNewModal = ({
   };
   const submitArtist = () => {
     event.preventDefault();
-    postNewArtist(newartistRecord, redirectSetter, setResponse);
+    postNewArtist(newartistRecord, setResponse);
   };
   const addNewArtistToggle = () => {
     showModalSetter("");

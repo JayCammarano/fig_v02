@@ -1,4 +1,4 @@
-const postNewArtist = (form, redirect, setResponse) => {
+const postNewArtist = (form, setResponse) => {
   let body = new FormData();
   body.append("name", form.name);
   body.append("description", form.description);
@@ -23,7 +23,6 @@ const postNewArtist = (form, redirect, setResponse) => {
     })
     .then((response) => response.json())
     .then((body) => setResponse(body))
-    .then(redirect(true))
     .catch((error) => console.error(`Error in fetch: ${error.message}`));
 };
 

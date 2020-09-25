@@ -8,7 +8,6 @@ import FetchAllArtists from "../../_assets/FetchAllArtists";
 import { Redirect } from "react-router-dom";
 
 const AllArtistsContainer = (props) => {
-  const [shouldRedirect, setShouldRedirect] = useState(false);
   const [getArtists, setArtists] = useState([
     { id: "", name: "", description: "", image: "" },
   ]);
@@ -31,7 +30,7 @@ const AllArtistsContainer = (props) => {
     );
   });
 
-  if (shouldRedirect == true && postResponse.id !== "") {
+  if (postResponse.id !== "") {
     return <Redirect to={`/artists/${postResponse.id}`} />;
   }
 
@@ -46,7 +45,6 @@ const AllArtistsContainer = (props) => {
         {artistTiles}
       </div>
       <ArtistNewModal
-        redirectSetter={setShouldRedirect}
         showModal={toggleNewArtist}
         showModalSetter={setToggleNewArtist}
         setResponse={setPostResponse}
