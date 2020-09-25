@@ -1,14 +1,19 @@
 import React, { useState } from "react";
 import MultiFieldContainer from "./MultiFieldContainer";
 import postNewArtist from "../../_assets/PostNewArtist";
-import ImageUploader from "./ImageUploader"
+import ImageUploader from "./ImageUploader";
 
-const ArtistNewModal = ({redirectSetter, showModal, showModalSetter, response}) => {
+const ArtistNewModal = ({
+  redirectSetter,
+  showModal,
+  showModalSetter,
+  response,
+}) => {
   const [newartistRecord, setnewArtistRecord] = useState({
     name: "",
     description: "",
     altName: [""],
-    image: [""]
+    image: [""],
   });
 
   const handleInputChange = (event) => {
@@ -93,7 +98,11 @@ const ArtistNewModal = ({redirectSetter, showModal, showModalSetter, response}) 
             <button id="submit" className="button is-success" type="submit">
               Submit
             </button>
-            <button id="cancel" className="button is-warning" onClick={addNewArtistToggle}>
+            <button
+              id="cancel"
+              className="button is-warning"
+              onClick={addNewArtistToggle}
+            >
               Cancel
             </button>
           </section>

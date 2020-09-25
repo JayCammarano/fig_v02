@@ -62,4 +62,40 @@ describe("AllArtistsContainer", () => {
     expect(wrapper.find(ArtistNewModal).props().showModal).toEqual("is-active")
 
   });
+  it("closes the new artist modal onClick of cancel button", () => {
+    act(() => {
+      wrapper
+        .find(ArtistPlaceHolderTile)
+        .simulate('click');
+    })
+    wrapper.update()
+    act(() => {
+      wrapper
+        .find(ArtistNewModal).find({children: "Cancel"})
+        .simulate('click');
+    })
+    wrapper.update()
+
+    expect(wrapper.find(ArtistNewModal).props().showModal).toEqual("")
+
+  });
+  it("closes the new artist modal onClick of X", () => {
+    act(() => {
+      wrapper
+        .find(ArtistPlaceHolderTile)
+        .simulate('click');
+    })
+    wrapper.update()
+    act(() => {
+      wrapper
+        .find(ArtistNewModal).find(".delete")
+        .simulate('click');
+    })
+    wrapper.update()
+
+    expect(wrapper.find(ArtistNewModal).props().showModal).toEqual("")
+
+  });
+
+
 });
