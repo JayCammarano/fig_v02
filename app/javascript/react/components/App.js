@@ -15,7 +15,7 @@ export class App extends Component {
     super();
     this.state = {
       loggedInStatus: "NOT_LOGGED_IN",
-      user: {},
+      user: {username: "", role: ""},
     };
     this.handleLogin = this.handleLogin.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
@@ -75,6 +75,7 @@ export class App extends Component {
                   handleLogin={this.handleLogin}
                   handleLogout={this.handleLogout}
                   loggedInStatus={this.state.loggedInStatus}
+                  role={this.state.user.role}
                 />
               )}
             />
@@ -87,6 +88,7 @@ export class App extends Component {
                   handleLogin={this.handleLogin}
                   handleLogout={this.handleLogout}
                   loggedInStatus={this.state.loggedInStatus}
+                  role={this.state.user.role}
                 />
               )}
             />
@@ -99,6 +101,7 @@ export class App extends Component {
                   handleLogin={this.handleLogin}
                   handleLogout={this.handleLogout}
                   loggedInStatus={this.state.loggedInStatus}
+                  role={this.state.user.role}
                 />
               )}
             />
@@ -111,6 +114,7 @@ export class App extends Component {
                   handleLogin={this.handleLogin}
                   handleLogout={this.handleLogout}
                   loggedInStatus={this.state.loggedInStatus}
+                  role={this.state.user.role}
                 />
               )}
             />
@@ -121,6 +125,7 @@ export class App extends Component {
                 <Dashboard
                   {...props}
                   loggedInStatus={this.state.loggedInStatus}
+                  role={this.state.user.role}
                 />
               )}
             />
@@ -132,6 +137,7 @@ export class App extends Component {
                 <AllArtistsContainer
                   {...props}
                   loggedInStatus={this.state.loggedInStatus}
+                  role={this.state.user.role}
                 />
               )}
             />
