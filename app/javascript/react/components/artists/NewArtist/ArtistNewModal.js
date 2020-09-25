@@ -7,7 +7,7 @@ const ArtistNewModal = ({
   redirectSetter,
   showModal,
   showModalSetter,
-  response,
+  setResponse,
 }) => {
   const [newartistRecord, setnewArtistRecord] = useState({
     name: "",
@@ -24,7 +24,7 @@ const ArtistNewModal = ({
   };
   const submitArtist = () => {
     event.preventDefault();
-    postNewArtist(newartistRecord, redirectSetter, response);
+    postNewArtist(newartistRecord, redirectSetter, setResponse);
   };
   const addNewArtistToggle = () => {
     showModalSetter("");
