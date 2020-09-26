@@ -12,7 +12,7 @@ import PleaseLogin from "../../../../../app/javascript/react/components/Auth/Ple
 Enzyme.configure({ adapter: new Adapter() });
 
 describe("AllArtistsContainer", () => {
-  let wrapper, onClickMock, artists;
+  let wrapper, artists;
 
   beforeEach(() => {
     artists = [
@@ -95,8 +95,5 @@ describe("AllArtistsContainer", () => {
     wrapper.update()
 
     expect(wrapper.find(ArtistNewModal).props().showModal).toEqual("")
-
   });
-
-
 });

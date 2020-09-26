@@ -25,4 +25,21 @@ describe("AllArtistPlaceholderTile", () => {
   it("loads the new artist modal", () => {
     expect(wrapper.exists()).toBe(true);
   });
+  it("loads the multifield component", () => {
+    expect(wrapper.find("MultiFieldContainer").exists()).toBe(true);
+  });
+  it("has an name and description fields", () => {
+    expect(wrapper.find("[name='name']").exists()).toBe(true);
+    expect(wrapper.find("[name='description']").exists()).toBe(true);
+  });
+
+  it("adds a new altname field onClick", () => {
+    act(() => {
+      wrapper
+        .find("MultiFieldContainer").find({children: "+ Add Artist Alias"})
+        .simulate('click');
+    })
+    wrapper.update()
+    expect(wrapper.find("MultiFieldContainer").find("AltNameField")).toHaveLength(2)
+  })
 });
