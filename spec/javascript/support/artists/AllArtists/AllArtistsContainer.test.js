@@ -8,7 +8,7 @@ import { BrowserRouter } from "react-router-dom";
 import AllArtistsContainer from "../../../../../app/javascript/react/components/artists/AllArtists/AllArtistsContainer";
 import ArtistPlaceHolderTile from "../../../../../app/javascript/react/components/artists/AllArtists/ArtistPlaceholderTile";
 import ArtistNewModal from "../../../../../app/javascript/react/components/artists/NewArtist/ArtistNewModal";
-
+import PleaseLogin from "../../../../../app/javascript/react/components/Auth/PleaseLogin"
 Enzyme.configure({ adapter: new Adapter() });
 
 describe("AllArtistsContainer", () => {
@@ -52,34 +52,35 @@ describe("AllArtistsContainer", () => {
     expect(wrapper.find({children: artists[1].name})).toExist
   });
 
-  // it("displays the new artist modal", () => {
-  //   act(() => {
-  //     wrapper
-  //       .find(ArtistPlaceHolderTile)
-  //       .simulate('click');
-  //   })
-  //   wrapper.update()
-  //   expect(wrapper.find(ArtistNewModal).props().showModal).toEqual("is-active")
-
-  // });
-  it("closes the new artist modal onClick of cancel button", () => {
+  it("displays pleaselogin modal", () => {
     act(() => {
       wrapper
         .find(ArtistPlaceHolderTile)
         .simulate('click');
     })
     wrapper.update()
+    expect(wrapper.find(PleaseLogin).props().showStatus).toEqual("is-active")
+
+  });
+  it("closes the pleaselogin onClick of cancel button", () => {
     act(() => {
       wrapper
-        .find(ArtistNewModal).find({children: "Cancel"})
+        .find(ArtistPlaceHolderTile)
         .simulate('click');
     })
     wrapper.update()
 
-    expect(wrapper.find(ArtistNewModal).props().showModal).toEqual("")
+    act(() => {
+      wrapper
+        .find(PleaseLogin).find({children: "Close"})
+        .simulate('click');
+    })
+    wrapper.update()
+
+    expect(wrapper.find(PleaseLogin).props().showStatus).toEqual("")
 
   });
-  it("closes the new artist modal onClick of X", () => {
+  it("closes the pleaselogin modal onClick of X", () => {
     act(() => {
       wrapper
         .find(ArtistPlaceHolderTile)
