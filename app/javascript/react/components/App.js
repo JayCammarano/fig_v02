@@ -15,7 +15,7 @@ export class App extends Component {
     super();
     this.state = {
       loggedInStatus: "NOT_LOGGED_IN",
-      user: {username: "", role: ""},
+      user: {username: "", role: "NOT_LOGGED_IN"},
     };
     this.handleLogin = this.handleLogin.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
