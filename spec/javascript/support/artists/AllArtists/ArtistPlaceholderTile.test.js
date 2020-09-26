@@ -13,7 +13,8 @@ describe("AllArtistPlaceholderTile", () => {
     onClickMock = jest.fn()
     wrapper = mount(
       <ArtistPlaceHolderTile
-        launchModal={onClickMock} //<-- this is new
+        launchModal={onClickMock}
+        launchLogin={onClickMock}
       />
     );  })
 
@@ -21,8 +22,8 @@ describe("AllArtistPlaceholderTile", () => {
     expect(wrapper.exists()).toBe(true)
   })
 
-  // it("calls setToggleNewArtist onClick", () => {
-  //   wrapper.simulate('click');
-  //   expect(onClickMock).toHaveBeenCalled()
-  // })
+  it("calls launchLogin onClick when logged out", () => {
+    wrapper.simulate('click');
+    expect(onClickMock).toHaveBeenCalled()
+  })
 })
