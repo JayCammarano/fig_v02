@@ -125,7 +125,6 @@ export class App extends Component {
                 <Dashboard
                   {...props}
                   loggedInStatus={this.state.loggedInStatus}
-                  role={this.state.user.role}
                 />
               )}
             />
