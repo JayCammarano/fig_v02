@@ -69,6 +69,8 @@ const ArtistShowPageContainer = (props) => {
         <BioTab
           description={getArtist}
           artistID={artistID}
+          image={getArtist.imageCaller}
+          name={getArtist.name}
           toggleNewRelease={toggleNewRelease}
           setToggleNewRelease={setToggleNewRelease}
         />

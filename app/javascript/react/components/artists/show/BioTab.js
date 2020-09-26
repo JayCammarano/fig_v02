@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import AddReleaseTile from "../../releases/new/AddReleaseTile"
 const BioTab = (props) => {
   return (
     <div className="columns">
@@ -15,23 +15,13 @@ const BioTab = (props) => {
         </div>
       </div>
       <div className="column is-one-third m-t-lg">
-        <Link to={`/artists/${props.artistID}/releases/new`}>
-          <div className="card has-background-light">
-            <p className="has-text-weight-bold has-text-grey m-sm">
-              <b>Add A New Release</b>
-            </p>
-            <figure className="image is-48by48 m-sm">
-              <img
-                src={props.description.imageCaller}
-                className="card-image"
-                alt="Cover Image"
+      <AddReleaseTile
+                artistID={props.artistID}
+                setToggleNewRelease={props.setToggleNewRelease}
+                toggleNewRelease={props.toggleNewRelease}
+                name={props.name}
+                image={props.image}
               />
-            </figure>
-            <h4 className="card-header-title has-text-dark">
-              Add A New Release by {props.name}
-            </h4>
-          </div>
-        </Link>
       </div>
     </div>
   );

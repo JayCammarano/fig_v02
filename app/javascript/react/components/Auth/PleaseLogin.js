@@ -7,7 +7,7 @@ const PleaseLogin = (props) => {
     loginErrors: "",
   });
   const closeModal = () => {
-    props.showStatus("");
+    props.setShowStatus("");
   };
 
   const handleSubmit = (event) => {

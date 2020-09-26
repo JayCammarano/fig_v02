@@ -56,7 +56,7 @@ const AllArtistsContainer = (props) => {
         showModalSetter={setToggleNewArtist}
         setResponse={setPostResponse}
       />
-      <PleaseLogin showStatus={toggleLogin} />
+      <PleaseLogin showStatus={toggleLogin} setShowStatus={setToggleLogin} />
     </div>
   );
 };
