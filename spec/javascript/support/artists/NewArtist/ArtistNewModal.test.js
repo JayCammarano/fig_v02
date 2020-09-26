@@ -1,7 +1,7 @@
 import React from "react";
 import Enzyme, { mount, shallow } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import { act } from "react-dom/test-utils"
+import { act } from "react-dom/test-utils";
 
 import ArtistNewModal from "../../../../../app/javascript/react/components/artists/NewArtist/ArtistNewModal";
 
@@ -14,11 +14,11 @@ describe("AllArtistPlaceholderTile", () => {
     onClickMock = jest.fn();
     wrapper = mount(
       <ArtistNewModal
-      redirectSetter={onClickMock}
-      showModal={toggleNewArtist}
-      showModalSetter={onClickMock}
-      response={onClickMock}
-    />
+        redirectSetter={onClickMock}
+        showModal={toggleNewArtist}
+        showModalSetter={onClickMock}
+        response={onClickMock}
+      />
     );
   });
 
@@ -36,10 +36,13 @@ describe("AllArtistPlaceholderTile", () => {
   it("adds a new altname field onClick", () => {
     act(() => {
       wrapper
-        .find("MultiFieldContainer").find({children: "+ Add Artist Alias"})
-        .simulate('click');
-    })
-    wrapper.update()
-    expect(wrapper.find("MultiFieldContainer").find("AltNameField")).toHaveLength(2)
-  })
+        .find("MultiFieldContainer")
+        .find({ children: "+ Add Artist Alias" })
+        .simulate("click");
+    });
+    wrapper.update();
+    expect(
+      wrapper.find("MultiFieldContainer").find("AltNameField")
+    ).toHaveLength(2);
+  });
 });
