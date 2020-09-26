@@ -21,8 +21,8 @@ describe("AllArtistPlaceholderTile", () => {
     expect(wrapper.exists()).toBe(true)
   })
 
-  it("calls setToggleNewArtist onClick", () => {
-    wrapper.simulate('click');
-    expect(onClickMock).toHaveBeenCalled()
-  })
+  // it("calls setToggleNewArtist onClick", () => {
+  //   wrapper.simulate('click');
+  //   expect(onClickMock).toHaveBeenCalled()
+  // })
 })

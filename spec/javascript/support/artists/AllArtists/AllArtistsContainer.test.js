@@ -52,16 +52,16 @@ describe("AllArtistsContainer", () => {
     expect(wrapper.find({children: artists[1].name})).toExist
   });
 
-  it("displays the new artist modal", () => {
-    act(() => {
-      wrapper
-        .find(ArtistPlaceHolderTile)
-        .simulate('click');
-    })
-    wrapper.update()
-    expect(wrapper.find(ArtistNewModal).props().showModal).toEqual("is-active")
+  // it("displays the new artist modal", () => {
+  //   act(() => {
+  //     wrapper
+  //       .find(ArtistPlaceHolderTile)
+  //       .simulate('click');
+  //   })
+  //   wrapper.update()
+  //   expect(wrapper.find(ArtistNewModal).props().showModal).toEqual("is-active")
 
-  });
+  // });
   it("closes the new artist modal onClick of cancel button", () => {
     act(() => {
       wrapper
