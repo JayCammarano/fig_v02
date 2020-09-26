@@ -6,12 +6,14 @@ import ArtistPlaceholderTile from "./ArtistPlaceholderTile";
 import ArtistNewModal from "../NewArtist/ArtistNewModal";
 import FetchAllArtists from "../../_assets/FetchAllArtists";
 import { Redirect } from "react-router-dom";
-
+import PleaseLogin from "../../Auth/PleaseLogin";
 const AllArtistsContainer = (props) => {
   const [getArtists, setArtists] = useState([
     { id: "", name: "", description: "", image: "" },
   ]);
   const [toggleNewArtist, setToggleNewArtist] = useState("");
+  const [toggleLogin, setToggleLogin] = useState("");
+
   const [postResponse, setPostResponse] = useState({ id: "" });
   useEffect(() => {
     FetchAllArtists(setArtists);
@@ -34,14 +36,18 @@ const AllArtistsContainer = (props) => {
   if (postResponse.id !== "") {
     return <Redirect to={`/artists/${postResponse.id}`} />;
   }
-  
+
   return (
     <div>
       <NavBar loggedInStatus={props.loggedInStatus} />
       <h3 className="title has-text-light pl-2 ml-5 pt-2">Artists</h3>
       <div className="columns is-multiline p-l-lg">
         <div className="is-one-fifth m-md">
-          <ArtistPlaceholderTile launchModal={setToggleNewArtist} />
+          <ArtistPlaceholderTile
+            launchLogin={setToggleLogin}
+            launchModal={setToggleNewArtist}
+            loggedInStatus={props.loggedInStatus}
+          />
         </div>
         {artistTiles}
       </div>
@@ -50,6 +56,7 @@ const AllArtistsContainer = (props) => {
         showModalSetter={setToggleNewArtist}
         setResponse={setPostResponse}
       />
+      <PleaseLogin showStatus={toggleLogin} />
     </div>
   );
 };

@@ -44,7 +44,7 @@ export class Home extends Component {
     this.size = "is-two-fifths";
   }
   handleSuccessfulAuth(data) {
-    this.props.history.push("/dashboard");
+    this.props.history.push("/");
     this.props.handleLogin(data);
   }
   handleLogoutClick() {
