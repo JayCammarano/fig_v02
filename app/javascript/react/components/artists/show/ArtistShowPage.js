@@ -1,7 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import NavBar from "../../Global/navbar/NavBar";
 import FetchArtistID from "../../_assets/FetchArtistID";
-import { Link } from "react-router-dom";
 import ReleasesTab from "./ReleasesTab";
 import BioTab from "./BioTab";
 import ReleaseNewForm from "../../releases/new/ReleaseNewModal";
@@ -98,6 +97,7 @@ const ArtistShowPageContainer = (props) => {
             <ul>
               <li
                 id="bio"
+                name="bio"
                 className={bioClass}
                 onClick={() => changeTabs("bio")}
               >
