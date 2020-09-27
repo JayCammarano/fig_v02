@@ -4,7 +4,7 @@ import Adapter from "enzyme-adapter-react-16";
 import fetchMock from "fetch-mock";
 import { act } from "react-dom/test-utils";
 
-import ReleaseNewModal from "../../../../../app/javascript/react/components/releases/new/ReleaseNewModal";
+import ReleaseNewForm from "../../../../../app/javascript/react/components/releases/new/ReleaseNewModal";
 import MultipleArtistFields from "../../../../../app/javascript/react/components/releases/new/MultipleArtistFields";
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -32,12 +32,12 @@ describe("ReleaseNewModal", () => {
     };
 
     wrapper = mount(
-      <ReleaseNewModal
-        releases={releases}
+      <ReleaseNewForm
+        toggleNewRelease="is-active"
+        artist="test"
         artistID={1}
-        image={"www.fake.com"}
-        name={"Chance the Rapper"}
-        toggleNewRelease={onClickMock}
+        shouldRedirect={false}
+        setShouldRedirect={onClickMock}
       />
     );
   });
@@ -46,9 +46,11 @@ describe("ReleaseNewModal", () => {
     expect(wrapper.exists()).toBe(true);
   });
 
-  it("have a title, artist, and embed field", () => {
+  it("have a title, artist, embed, release_type, and year field", () => {
     expect(wrapper.find("[name='title']").exists()).toBe(true);
     expect(wrapper.find("[name='embed_url']").exists()).toBe(true);
+    expect(wrapper.find("[name='release_type']").exists()).toBe(true);
+    expect(wrapper.find("[name='original_release_year']").exists()).toBe(true);
   });
 
   it("adds a new artist field onClick", () => {
@@ -59,8 +61,32 @@ describe("ReleaseNewModal", () => {
         .simulate("click");
     });
     wrapper.update();
-    expect(
-      wrapper.find(MultipleArtistFields).find("ArtistField")
-    ).toHaveLength(2);
+    expect(wrapper.find(MultipleArtistFields).find("ArtistField")).toHaveLength(
+      2
+    );
   });
+
+  // it("Release New Modal redirects on submit", () => {
+  //   let fetchResponse =
+  //     ({
+  //       id: 4,
+  //       release_type: "Album",
+  //       embed_url: "",
+  //       title: "test",
+  //       original_release_year: 2020,
+  //     },
+  //     {
+  //       status: 200,
+  //     });
+
+  //   act(() => {
+  //     wrapper.
+  //     wrapper
+  //       .find({ children: "Submit" })
+  //       .simulate("click");
+  //   });
+  //   wrapper.update();
+  //   expect(wrapper.props().shouldRedirect).toBe(true);
+  // });
+
 });

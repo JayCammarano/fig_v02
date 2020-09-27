@@ -1,5 +1,5 @@
 import React from "react";
-import Enzyme, { mount, shallow } from "enzyme";
+import Enzyme, { mount } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import fetchMock from "fetch-mock";
 import { act } from "react-dom/test-utils";
