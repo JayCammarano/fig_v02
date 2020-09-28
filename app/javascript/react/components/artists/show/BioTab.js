@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import AddReleaseTile from "../../releases/new/AddReleaseTile"
 const BioTab = (props) => {
+
   return (
     <div className="columns">
       <div className="column is-three-fifths center">
@@ -21,6 +22,9 @@ const BioTab = (props) => {
                 toggleNewRelease={props.toggleNewRelease}
                 name={props.name}
                 image={props.image}
+                launchLogin={props.setShowStatus}
+                loggedInStatus={props.loggedInStatus}
+
               />
       </div>
     </div>

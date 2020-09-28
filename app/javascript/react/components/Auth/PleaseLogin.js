@@ -44,7 +44,7 @@ const PleaseLogin = (props) => {
       <div className="modal-background"></div>
       <div className="modal-card">
         <header className="modal-card-head">
-          <p className="modal-card-title">Please Login</p>
+          <p className="modal-card-title">Please Login First</p>
           <button
             className="delete"
             aria-label="close"
