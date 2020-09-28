@@ -49,12 +49,10 @@ RSpec.describe SessionsController, type: :controller do
       it "returns the logged_in status of false" do
         post :create, params: {"user"=>{"email"=>user1.email, "password"=>user1.password}}
         returned_json = JSON.parse(response.body)      
-                
+
         expect(returned_json["logged_in"]).to eq(true)
         expect(returned_json["user"]["id"]).to eq(user1.id)
-
       end
     end
   end
-
 end
