@@ -1,7 +1,6 @@
 import React from "react";
 import Enzyme, { mount, shallow } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import fetchMock from "fetch-mock";
 import { act } from "react-dom/test-utils";
 
 import ReleaseNewForm from "../../../../../app/javascript/react/components/releases/new/ReleaseNewModal";
@@ -65,28 +64,4 @@ describe("ReleaseNewModal", () => {
       2
     );
   });
-
-  // it("Release New Modal redirects on submit", () => {
-  //   let fetchResponse =
-  //     ({
-  //       id: 4,
-  //       release_type: "Album",
-  //       embed_url: "",
-  //       title: "test",
-  //       original_release_year: 2020,
-  //     },
-  //     {
-  //       status: 200,
-  //     });
-
-  //   act(() => {
-  //     wrapper.
-  //     wrapper
-  //       .find({ children: "Submit" })
-  //       .simulate("click");
-  //   });
-  //   wrapper.update();
-  //   expect(wrapper.props().shouldRedirect).toBe(true);
-  // });
-
-});
+ });
