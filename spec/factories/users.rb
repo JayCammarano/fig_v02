@@ -6,5 +6,7 @@ FactoryBot.define do
     username {"testuser"}
     password { 'password' }
     password_confirmation { 'password' }
+    role {"admin"}
   end
+
 end

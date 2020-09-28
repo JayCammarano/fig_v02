@@ -141,6 +141,38 @@ RSpec.describe Api::V1::ArtistsController, type: :controller do
   
       end
     end
-
   end
+  describe "POST#Destroy" do
+    let!(:artist1) {FactoryBot.create(:artist)}
+    let!(:user1) {FactoryBot.create(:user)}
+    before { allow_any_instance_of(ActionDispatch::Request).to receive(:session).and_return(user_id: user1.id) }
+    context "when a request as an admin is made" do
+      it "deletes the artist" do
+        previous_count = Artist.count
+        post :destroy, :params =>  {:id => artist1.id}
+        new_count = Artist.count
+        
+        expect(response.content_type).to eq "application/json"
+        expect(new_count).to eq(previous_count - 1)
+      end
+    end
+  end
+  describe "POST#Destroy" do
+    let!(:artist1) {FactoryBot.create(:artist)}
+    let!(:user1) {FactoryBot.create(:user, role: "user")}
+    before { allow_any_instance_of(ActionDispatch::Request).to receive(:session).and_return(user_id: user1.id) }
+    context "when a request as a user is made" do
+      it "returns an error" do
+        previous_count = Artist.count
+        post :destroy, :params =>  {:id => artist1.id}
+        new_count = Artist.count
+        returned_json = JSON.parse(response.body)
+            
+        expect(response.content_type).to eq "application/json"
+        expect(returned_json["error"]).to eq("Insufficient privileges to complete the operation. User must be admin")
+        expect(new_count).to eq(previous_count)
+      end
+    end
+  end
+
 end

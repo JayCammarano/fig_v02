@@ -78,11 +78,14 @@ class Api::V1::ArtistsController < ApplicationController
     if @current_user.role === "admin"
       @artist = Artist.find(params[:id])
       if @artist.destroy
-        flash[:success] = 'Artist was successfully deleted.'
-        redirect_to artists_url
+        render :json => Artist.all
       else
-        flash[:error] = 'Something went wrong'
-        redirect_to artists_url
+        error = {
+          error: "Artists failed to be deleted",
+          status: 400
+        }
+    
+        render :json => error, :status => :bad_request
       end
     else      
       error = {
