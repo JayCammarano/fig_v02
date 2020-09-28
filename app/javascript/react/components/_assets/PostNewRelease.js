@@ -8,7 +8,12 @@ const PostNewRelease = (form, redirect, artistID, setResponse) => {
   form.artists.forEach((artist) => {
     body.append("artists[]", artist);
   });
-  body.append("image", form.image[0]);
+  if (form.image) {
+    body.append("image", form.image[0]);
+  }else if (form.imageurl) {
+    body.append("imageurl", form.imageurl);
+  }
+
 
   fetch(`/api/v1/artists/${artistID}/releases`, {
     method: "POST",
