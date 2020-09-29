@@ -121,7 +121,13 @@ const ReleaseNewForm = (props) => {
           setReleaseRecord({
             ...releaseRecord,
             original_release_year: infoPiece["year"],
-          });
+          })
+        }else if (Object.keys(infoPiece)[0] === "imageurl"){
+          setReleaseRecord({
+            ...releaseRecord,
+            imageurl: infoPiece["imageurl"],
+          })
+          seturlUploaderToggle("url")
         }
       });
     }

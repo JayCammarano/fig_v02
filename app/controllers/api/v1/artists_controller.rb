@@ -19,6 +19,7 @@ class Api::V1::ArtistsController < ApplicationController
           albumBlob = wrapper.get_master_release(release.id)
           titleBlob = {title: release.title}
           yearBlob = {year: release.year}
+          imageurl = {imageurl: albumBlob.images[0].uri}
           credits << yearBlob
           credits << titleBlob
           albumBlob.tracklist.each do |track|
@@ -101,7 +102,7 @@ class Api::V1::ArtistsController < ApplicationController
     params.permit(:name, :description, :image, :altNames)
   end
   def release_params
-    params.permit(:title, :description, :original_release_year, :release_type, :embed_url, :artists)
+    params.permit(:title, :description, :artists, :image, :artist_id, :artist, :original_release_year, :imageurl, :release_type, :embed_url, :artists)
   end
 
 end
