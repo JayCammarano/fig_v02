@@ -22,6 +22,7 @@ RSpec.describe RegistrationsController, type: :controller do
         expect(returned_json["user"]["email"]).to eq("test@gmail.com")
       end
     end
+    
     context "when a post is made with incorrect params" do
       it "returns an error" do
         previous_count = User.count
