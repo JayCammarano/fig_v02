@@ -1,5 +1,5 @@
-import React from 'react'
-import NavBar from '../Global/navbar/NavBar'
+import React from "react";
+import NavBar from "../Global/navbar/NavBar";
 
 const Dashboard = (props) => {
   return (
@@ -8,7 +8,7 @@ const Dashboard = (props) => {
       <h1>Dashboard</h1>
       <h1>Status: {props.loggedInStatus}</h1>
     </div>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;

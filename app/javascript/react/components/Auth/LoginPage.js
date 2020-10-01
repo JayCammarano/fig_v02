@@ -44,12 +44,12 @@ export class Home extends Component {
     this.size = "is-two-fifths";
   }
   handleSuccessfulAuth(data) {
-    this.props.history.push("/dashboard");
+    this.props.history.push("/");
     this.props.handleLogin(data);
   }
   handleLogoutClick() {
     axios
-      .delete(`${axiosUrl}/logout`, { withCredentials: true })
+      .delete(`/logout`, { withCredentials: true })
       .then((response) => {
         this.props.handleLogout();
       })

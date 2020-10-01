@@ -11,12 +11,8 @@ const FetchAllArtists = (setter) => {
     })
 
     .then((response) => response.json())
-    .then((body) => {
-      
-      setter(body);
-    })
+    .then((body) => setter(body))
     .catch((error) => console.error(`Error in fetch: ${error.message}`));
-  
 };
 
 export default FetchAllArtists;

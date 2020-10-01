@@ -2,14 +2,18 @@ const PostNewRelease = (form, redirect, artistID, setResponse) => {
   let body = new FormData();
   body.append("title", form.title);
   body.append("release_type", form.release_type);
-  body.append("original_release_year", form.year);
+  body.append("original_release_year", form.original_release_year);
   body.append("embed_url", form.embed_url);
   body.append("description", form.description);
   form.artists.forEach((artist) => {
     body.append("artists[]", artist);
   });
+  if (form.image) {
+    body.append("image", form.image[0]);
+  }else if (form.imageurl) {
+    body.append("imageurl", form.imageurl);
+  }
 
-  body.append("image", form.image[0]);
 
   fetch(`/api/v1/artists/${artistID}/releases`, {
     method: "POST",

@@ -1,5 +1,7 @@
 class Api::V1::ArtistsController < ApplicationController
   require "discogs"
+  include CurrentUserConcern
+
 
   def index    
     render json: Artist.all
@@ -17,6 +19,7 @@ class Api::V1::ArtistsController < ApplicationController
           albumBlob = wrapper.get_master_release(release.id)
           titleBlob = {title: release.title}
           yearBlob = {year: release.year}
+          imageurl = {imageurl: albumBlob.images[0].uri}
           credits << yearBlob
           credits << titleBlob
           albumBlob.tracklist.each do |track|
@@ -72,12 +75,34 @@ class Api::V1::ArtistsController < ApplicationController
     end
   end
 
+  def destroy
+    if @current_user.role === "admin"
+      @artist = Artist.find(params[:id])
+      if @artist.destroy
+        render :json => Artist.all
+      else
+        error = {
+          error: "Artists failed to be deleted",
+          status: 400
+        }
+    
+        render :json => error, :status => :bad_request
+      end
+    else      
+      error = {
+      error: "Insufficient privileges to complete the operation. User must be admin",
+      status: 400
+    }
+    render :json => error, :status => :bad_request
+    end
+  end
+  
   private
   def artist_params
     params.permit(:name, :description, :image, :altNames)
   end
   def release_params
-    params.permit(:title, :description, :original_release_year, :release_type, :embed_url, :artists)
+    params.permit(:title, :description, :artists, :image, :artist_id, :artist, :original_release_year, :imageurl, :release_type, :embed_url, :artists)
   end
 
 end

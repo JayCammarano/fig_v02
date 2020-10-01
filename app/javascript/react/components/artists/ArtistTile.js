@@ -2,6 +2,23 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const ArtistTile = (props) => {
+  const deleteArtist = (id) => {
+    fetch(`/api/v1/artists/${id}`, {
+      method: "DELETE",
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`,
+            error = new Error(errorMessage);
+          throw error;
+        }
+      })
+      .then((response) => response.json())
+      .then((body) => console.log(body))
+      .catch((error) => console.error(`Error in fetch: ${error.message}`));
+  };
   let image;
   if (props.image === null) {
     image =
@@ -9,6 +26,7 @@ const ArtistTile = (props) => {
   } else {
     image = props.image;
   }
+
   return (
     <div className="card has-background-light">
       <figure className="image is-48by48">
@@ -16,6 +34,12 @@ const ArtistTile = (props) => {
       </figure>
       <h4 className="card-header-title has-text-dark overflowHCard">
         {props.name}
+        <button
+          className="delete"
+          id={`${props.role}`}
+          aria-label="close"
+          onClick={() => deleteArtist(props.id)}
+        ></button>
       </h4>
     </div>
   );

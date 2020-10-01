@@ -2,8 +2,13 @@ import React from 'react'
 
 const AddReleaseTile = (props) => {
   const addNewReleaseToggle=()=>{
-    props.setToggleNewRelease("is-active")
-  }
+    if (props.loggedInStatus === "LOGGED_IN") {
+      props.setToggleNewRelease("is-active")
+    } else {
+      props.launchLogin("is-active")
+    }
+  };
+  
   let image
   if (props.image === null) {
     image =
@@ -11,6 +16,7 @@ const AddReleaseTile = (props) => {
   } else {
     image = props.image;
   }
+
 
   return (
     <div className="card has-background-light" onClick={addNewReleaseToggle}>

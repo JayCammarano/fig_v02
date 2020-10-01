@@ -29,6 +29,8 @@ export const ReleasesTab = (props) => {
                 toggleNewRelease={props.toggleNewRelease}
                 name={props.name}
                 image={props.image}
+                launchLogin={props.setShowStatus}
+                loggedInStatus={props.loggedInStatus}          
               />
             </div>
             {releaseTiles}

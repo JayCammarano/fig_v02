@@ -59,7 +59,7 @@ export class Home extends Component {
   }
   handleLogoutClick() {
     axios
-      .delete(`${axiosUrl}/logout`, { withCredentials: true })
+      .delete(`/logout`, { withCredentials: true })
       .then((response) => {
         this.props.handleLogout();
       })

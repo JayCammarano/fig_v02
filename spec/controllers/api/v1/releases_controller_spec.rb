@@ -48,7 +48,7 @@ RSpec.describe Api::V1::ReleasesController, type: :controller do
         new_count = Release.count
 
         expect(response.status).to eq 200
-        expect(response.content_type).to eq "application/json"
+        expect(response.content_type).to eq("application/json")
         expect(new_count).to eq(previous_count + 1)
       end
 
@@ -61,6 +61,27 @@ RSpec.describe Api::V1::ReleasesController, type: :controller do
         expect(returned_json["original_release_year"]).to eq(2013)
       end
     end
+    # context "when a post is made with an imageurl" do
+    #   it "adds a new Release to the database with the imageurl as the image" do
+    #     previous_count = Release.count
+    #     post :create, params: {artist_id: artist1.id, title: "title", artists: [artist1.name], release_type: "Album", original_release_year: "2013", imageurl: "https://i.imgur.com/2RuHxLQ.jpg"}
+    #     new_count = Release.count
+
+    #     expect(response.status).to eq 200
+    #     expect(response.content_type).to eq "application/json"
+    #     expect(new_count).to eq(previous_count + 1)
+    #   end
+
+    #   it "returns the release information" do
+    #     post :create, params: {artist_id: artist1.id, title: "title", artists: [artist1.name], release_type: "Album", original_release_year: "2013", imageurl: "https://i.imgur.com/2RuHxLQ.jpg"}
+    #     returned_json = JSON.parse(response.body)
+                
+    #     expect(Release.last["title"]).to eq("title")
+    #     expect(Release.last.images.first.attachment).to include("2RuHxLQ.jpg")
+    #     expect(returned_json["original_release_year"]).to eq(2013)
+        
+    #   end
+    # end
 
     context "when a post is made with invalid params" do
       it "doesnt add a new release to the database" do

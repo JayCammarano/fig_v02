@@ -5,7 +5,7 @@ import axiosUrl from "../../_assets/axiosUrl"
 const SignOut = (props) => {
   const handleLogoutClick = () => {
     axios
-      .delete(`${axiosUrl}/logout`, { withCredentials: true })
+      .delete(`/logout`, { withCredentials: true })
       .then((response) => {
         this.props.handleLogout();
       })

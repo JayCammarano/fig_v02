@@ -8,6 +8,7 @@ export class Registration extends Component {
       email: "",
       password: "",
       password_confirmation: "",
+      username: "",
       registrationErrors: "",
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -22,6 +23,7 @@ export class Registration extends Component {
             email: this.state.email,
             password: this.state.password,
             password_confirmation: this.state.password_confirmation,
+            username: this.state.username
           },
         },
         { withCredentials: true }
@@ -58,6 +60,16 @@ export class Registration extends Component {
         </div>
         <div className="content center">
           <form onSubmit={this.handleSubmit}>
+          <div className="center m-md">
+              <input
+                type="username"
+                name="username"
+                placeholder="Username"
+                value={this.state.username}
+                onChange={this.handleChange}
+                required
+              />
+            </div>
             <div className="center m-md">
               <input
                 type="email"

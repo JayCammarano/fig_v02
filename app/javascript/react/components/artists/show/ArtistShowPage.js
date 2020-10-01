@@ -1,12 +1,11 @@
 import React, { Fragment, useEffect, useState } from "react";
 import NavBar from "../../Global/navbar/NavBar";
 import FetchArtistID from "../../_assets/FetchArtistID";
-import { Link } from "react-router-dom";
 import ReleasesTab from "./ReleasesTab";
 import BioTab from "./BioTab";
 import ReleaseNewForm from "../../releases/new/ReleaseNewModal";
 import { Redirect } from "react-router-dom";
-
+import PleaseLogin from "../../Auth/PleaseLogin"
 const ArtistShowPageContainer = (props) => {
   let artistID = props.match.params.id;
   const defaultArtist = {
@@ -28,10 +27,11 @@ const ArtistShowPageContainer = (props) => {
     ],
   };
   const [toggleNewRelease, setToggleNewRelease] = useState("");
-  const [response, setResponse] = useState({id: ""})
+  const [response, setResponse] = useState({ id: "" });
   const [getArtist, setArtist] = useState(defaultArtist);
   const [whichTab, setWhichTab] = useState({ id: "releases" });
   const [shouldRedirect, setShouldRedirect] = useState(false);
+  const [toggleLogin, setToggleLogin] = useState("");
 
   const changeTabs = (tab) => {
     setWhichTab({ id: tab });
@@ -58,6 +58,8 @@ const ArtistShowPageContainer = (props) => {
           name={getArtist.name}
           toggleNewRelease={toggleNewRelease}
           setToggleNewRelease={setToggleNewRelease}
+          setShowStatus={setToggleLogin}
+          loggedInStatus={props.loggedInStatus}
         />
       );
     } else if (whichTab.id === "bio") {
@@ -69,8 +71,12 @@ const ArtistShowPageContainer = (props) => {
         <BioTab
           description={getArtist}
           artistID={artistID}
+          image={getArtist.imageCaller}
+          name={getArtist.name}
           toggleNewRelease={toggleNewRelease}
           setToggleNewRelease={setToggleNewRelease}
+          setShowStatus={setToggleLogin}
+          loggedInStatus={props.loggedInStatus}
         />
       );
     }
@@ -96,6 +102,7 @@ const ArtistShowPageContainer = (props) => {
             <ul>
               <li
                 id="bio"
+                name="bio"
                 className={bioClass}
                 onClick={() => changeTabs("bio")}
               >
@@ -122,6 +129,7 @@ const ArtistShowPageContainer = (props) => {
         setShouldRedirect={setShouldRedirect}
         setResponse={setResponse}
       />
+      <PleaseLogin showStatus={toggleLogin} setShowStatus={setToggleLogin} />
     </>
   );
 };

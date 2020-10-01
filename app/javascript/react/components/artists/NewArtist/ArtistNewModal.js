@@ -1,14 +1,18 @@
 import React, { useState } from "react";
 import MultiFieldContainer from "./MultiFieldContainer";
 import postNewArtist from "../../_assets/PostNewArtist";
-import ImageUploader from "./ImageUploader"
+import ImageUploader from "./ImageUploader";
 
-const ArtistNewTile = ({redirectSetter, showModal, showModalSetter, response}) => {
+const ArtistNewModal = ({
+  showModal,
+  showModalSetter,
+  setResponse,
+}) => {
   const [newartistRecord, setnewArtistRecord] = useState({
     name: "",
     description: "",
     altName: [""],
-    image: [""]
+    image: [""],
   });
 
   const handleInputChange = (event) => {
@@ -19,7 +23,7 @@ const ArtistNewTile = ({redirectSetter, showModal, showModalSetter, response}) =
   };
   const submitArtist = () => {
     event.preventDefault();
-    postNewArtist(newartistRecord, redirectSetter, response);
+    postNewArtist(newartistRecord, setResponse);
   };
   const addNewArtistToggle = () => {
     showModalSetter("");
@@ -93,7 +97,11 @@ const ArtistNewTile = ({redirectSetter, showModal, showModalSetter, response}) =
             <button id="submit" className="button is-success" type="submit">
               Submit
             </button>
-            <button id="cancel" className="button is-warning" onClick={addNewArtistToggle}>
+            <button
+              id="cancel"
+              className="button is-warning"
+              onClick={addNewArtistToggle}
+            >
               Cancel
             </button>
           </section>
@@ -103,4 +111,4 @@ const ArtistNewTile = ({redirectSetter, showModal, showModalSetter, response}) =
   );
 };
 
-export default ArtistNewTile;
+export default ArtistNewModal;

@@ -3,12 +3,13 @@ import _ from "lodash";
 import MultipleArtistFields from "./MultipleArtistFields";
 import PostNewRelease from "../../_assets/PostNewRelease";
 import DiscogsAutofill from "../../_assets/DiscogsAutofill";
-import ImageUploader from "./ImageUploader";
+import ImageUploader from "./coverUploaders/ImageUploader";
+import URLUploader from "./coverUploaders/UrlUploader";
 
 const ReleaseNewForm = (props) => {
   let artist = props.artist;
   let artistID = props.artistID;
-  const starterArray = [{ title: "" }, { artist: "" }, {year: ""}];
+  const starterArray = [{ title: "" }, { artist: "" }, { year: "" }];
   const [autoFill, setAutofill] = useState(starterArray);
   const [releaseRecord, setReleaseRecord] = useState({
     title: "",
@@ -17,7 +18,8 @@ const ReleaseNewForm = (props) => {
     release_type: "Album",
     original_release_year: 2020,
     embed_url: "",
-    image: [""]
+    image: null,
+    imageurl: null
   });
   useEffect(() => {
     setReleaseRecord({
@@ -52,9 +54,13 @@ const ReleaseNewForm = (props) => {
 
   const addNewRelease = (release) => {
     event.preventDefault();
-    PostNewRelease(release, props.setShouldRedirect, artistID, props.setResponse);
+    PostNewRelease(
+      release,
+      props.setShouldRedirect,
+      artistID,
+      props.setResponse
+    );
   };
-
 
   const handleArtistChange = (event) => {
     let artists = releaseRecord.artists;
@@ -72,6 +78,26 @@ const ReleaseNewForm = (props) => {
   const FetchDiscogs = () => {
     DiscogsAutofill(artistID, releaseRecord, setAutofill);
   };
+  const [urlUploaderToggle, seturlUploaderToggle] = useState("local");
+  let coverArtUploadMethod;
+  if (urlUploaderToggle == "local") {
+    coverArtUploadMethod = (
+      <ImageUploader
+        releaseRecord={releaseRecord}
+        setReleaseRecord={setReleaseRecord}
+        methodToggle={seturlUploaderToggle}
+      />
+    );
+  } else {
+    coverArtUploadMethod = (
+      <URLUploader
+        releaseRecord={releaseRecord}
+        setReleaseRecord={setReleaseRecord}
+        methodToggle={seturlUploaderToggle}
+        handleInputChange={handleInputChange}
+      />
+    );
+  }
 
   useEffect(() => {
     let n = 1;
@@ -95,7 +121,13 @@ const ReleaseNewForm = (props) => {
           setReleaseRecord({
             ...releaseRecord,
             original_release_year: infoPiece["year"],
-          });
+          })
+        }else if (Object.keys(infoPiece)[0] === "imageurl"){
+          setReleaseRecord({
+            ...releaseRecord,
+            imageurl: infoPiece["imageurl"],
+          })
+          seturlUploaderToggle("url")
         }
       });
     }
@@ -199,7 +231,7 @@ const ReleaseNewForm = (props) => {
                   handleArtistChange={handleArtistChange}
                   releaseRecord={releaseRecord}
                 />
-                <ImageUploader releaseRecord={releaseRecord} setReleaseRecord={setReleaseRecord}/>
+               {coverArtUploadMethod}
                 <br />
                 <button className="button is-success" type="submit">
                   Submit

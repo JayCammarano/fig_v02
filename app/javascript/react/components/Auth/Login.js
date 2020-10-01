@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import axios from "axios";
-import axiosUrl from "../_assets/axiosUrl"
 
 export class Login extends Component {
   constructor(props) {
@@ -17,7 +16,7 @@ export class Login extends Component {
     const { email, password } = this.state;
     axios
       .post(
-        `${axiosUrl}/sessions`,
+        `/sessions`,
         {
           user: {
             email: email,
@@ -44,22 +43,21 @@ export class Login extends Component {
   render() {
     return (
       <div className="card-content">
-          <div className="media">
-            <div className="media-left">
-              <figure className="image is-48x48">
-                <img
-                  src="https://bulma.io/images/placeholders/96x96.png"
-                  alt="Placeholder image"
-                />
-              </figure>
-            </div>
-            <div className="media-content">
-              <p className="title is-4">Welcome To Fig.</p>
-              <p className="subtitle is-6">by Jay Cammarano</p>
-            </div>
+        <div className="media">
+          <div className="media-left">
+            <figure className="image is-48x48">
+              <img
+                src="https://bulma.io/images/placeholders/96x96.png"
+                alt="Placeholder image"
+              />
+            </figure>
           </div>
-          <div className="content">
-
+          <div className="media-content">
+            <p className="title is-4">Welcome To Fig.</p>
+            <p className="subtitle is-6">by Jay Cammarano</p>
+          </div>
+        </div>
+        <div className="content">
           <form onSubmit={this.handleSubmit}>
             <div className="center m-md">
               <input

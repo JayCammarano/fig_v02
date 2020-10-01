@@ -15,14 +15,14 @@ export class App extends Component {
     super();
     this.state = {
       loggedInStatus: "NOT_LOGGED_IN",
-      user: {},
+      user: {username: "", role: "NOT_LOGGED_IN"},
     };
     this.handleLogin = this.handleLogin.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
   }
   checkLoginStatus() {
     axios
-      .get(`${axiosUrl}/logged_in`, { withCredentials: true })
+      .get(`/logged_in`, { withCredentials: true })
       .then((response) => {
         if (
           response.data.logged_in &&
@@ -75,6 +75,7 @@ export class App extends Component {
                   handleLogin={this.handleLogin}
                   handleLogout={this.handleLogout}
                   loggedInStatus={this.state.loggedInStatus}
+                  role={this.state.user.role}
                 />
               )}
             />
@@ -87,6 +88,7 @@ export class App extends Component {
                   handleLogin={this.handleLogin}
                   handleLogout={this.handleLogout}
                   loggedInStatus={this.state.loggedInStatus}
+                  role={this.state.user.role}
                 />
               )}
             />
@@ -99,6 +101,7 @@ export class App extends Component {
                   handleLogin={this.handleLogin}
                   handleLogout={this.handleLogout}
                   loggedInStatus={this.state.loggedInStatus}
+                  role={this.state.user.role}
                 />
               )}
             />
@@ -111,6 +114,7 @@ export class App extends Component {
                   handleLogin={this.handleLogin}
                   handleLogout={this.handleLogout}
                   loggedInStatus={this.state.loggedInStatus}
+                  role={this.state.user.role}
                 />
               )}
             />
@@ -132,6 +136,7 @@ export class App extends Component {
                 <AllArtistsContainer
                   {...props}
                   loggedInStatus={this.state.loggedInStatus}
+                  role={this.state.user.role}
                 />
               )}
             />
