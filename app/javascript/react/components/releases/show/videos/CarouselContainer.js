@@ -4,7 +4,9 @@ import ReactPlayer from "react-player";
 const YoutubeSlide = ({ url, isSelected }) => (
   <ReactPlayer playing={isSelected} width="100%" url={url} />
 );
-const SoundcloudSlide = ({ url }) => <ReactPlayer key={0} width="100%" url={url} />;
+const SoundcloudSlide = ({ url }) => (
+  <ReactPlayer key={0} width="100%" url={url} />
+);
 const CarouselContainer = (props) => {
   const getVideoThumb = (videoId) =>
     `https://img.youtube.com/vi/${videoId}/default.jpg`;
@@ -14,14 +16,18 @@ const CarouselContainer = (props) => {
 
   const customRenderThumb = (children) =>
     children.map((item) => {
-      if (item.type.name === "YoutubeSlide") {
+      
+      if (item.props.url.includes("www.youtube.com")){
         const videoId = getVideoId(item.props.url);
-        n=n+1
+        n = n + 1;
         return <img key={n} src={getVideoThumb(videoId)} />;
       } else {
-        n=n+1
+        n = n + 1;
         return (
-          <img key={n}src="https://w.soundcloud.com/icon/assets/images/orange_white_32-94fc761.png" />
+          <img
+            key={n}
+            src="https://w.soundcloud.com/icon/assets/images/orange_white_32-94fc761.png"
+          />
         );
       }
     });

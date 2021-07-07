@@ -10,6 +10,10 @@ const ArtistsTab = (props) => {
   };
 
   const artistListingArray = props.artists.map((artist) => {
+    let image = null
+    if(artist.image !== null){
+      image = artist.image.attachment.url
+    }
     return (
       <div
         className="column is-two-fifths"
@@ -21,7 +25,7 @@ const ArtistsTab = (props) => {
           key={artist.id}
           name={artist.name}
           description={artist.description}
-          imageCaller={artist.image}
+          image={image}
         />
       </div>
     );
